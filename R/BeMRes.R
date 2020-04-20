@@ -60,7 +60,7 @@
 BeMRes <-
   function(times, delta = rep(1, length(times)), alpha = rep(0.0001, K), 
            beta = rep(0.0001, K), c.r = rep(0, K-1), type.c = 4, 
-           epsilon =  1, iterations = 1000, 
+           epsilon =  1, iterations = 2000, 
            burn.in = floor(iterations * 0.2), thinning = 5, printtime = TRUE) {  
     tInit <- proc.time()
     K <- max(times)
