@@ -4,8 +4,7 @@ function(times, delta, type.t, K, length) {
   if (type.t == 1) {
     n <- length(t.unc)
     if (n > K) {
-      quant <- c(t.unc, max(times))
-      tao <- c(0, quantile(x = quant, probs = (1:K) / K, names = FALSE))
+      tao <- c(0, quantile(x = t.unc, probs = (1:K) / K, names = FALSE))
       if (type.t == 1 && length(unique(tao)) != length(tao)) {
         warning("Too many repeated observations. Zero-length intervals may
                 appear.")
