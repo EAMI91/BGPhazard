@@ -5,9 +5,9 @@
 \title{Markov Beta Model}
 \usage{
 BeMRes(times, delta = rep(1, length(times)), alpha = rep(1e-04, K),
-  beta = rep(1e-04, K), c.r = rep(0, K - 1), type.c = 4,
-  epsilon = 1, iterations = 1000, burn.in = floor(iterations * 0.2),
-  thinning = 5, printtime = TRUE)
+  beta = rep(1e-04, K), c.r = rep(0, K - 1), a.eps = 0.1,
+  b.eps = 0.1, type.c = 4, epsilon = 1, iterations = 2000,
+  burn.in = floor(iterations * 0.2), thinning = 5, printtime = TRUE)
 }
 \arguments{
 \item{times}{Numeric positive vector. Failure times.}
@@ -25,11 +25,17 @@ specify a non-informative prior distribution.}
 \item{c.r}{Nonnegative vector. The higher the entries, the higher the
 correlation of two consecutive failure times.}
 
+\item{a.eps}{Numeric. Shape parameter for the prior gamma distribution of
+epsilon when \code{type.c = 4}.}
+
+\item{b.eps}{Numeric. Scale parameter for the prior gamma distribution of
+epsilon when \code{type.c = 4}.}
+
 \item{type.c}{Integer. 1=defines \code{c.r} as a zero-entry vector; 2=lets
 the user define \code{c.r} freely; 3=assigns \code{c.r} an
 exponential prior distribution with mean \code{epsilon}; 4=assigns \code{c.r} 
 an exponential hierarchical distribution with mean \code{epsilon} which in turn has a
-a Ga(0.01, 0.01) distribution.}
+a Ga(a.eps, b.eps) distribution.}
 
 \item{epsilon}{Double. Mean of the exponential distribution assigned to
 \code{c.r}}

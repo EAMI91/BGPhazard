@@ -17,11 +17,15 @@
 #' specify a non-informative prior distribution.
 #' @param c.r Nonnegative vector. The higher the entries, the higher the
 #' correlation of two consecutive failure times.
+#' @param a.eps Numeric. Shape parameter for the prior gamma distribution of
+#' epsilon when \code{type.c = 4}.
+#' @param b.eps Numeric. Scale parameter for the prior gamma distribution of
+#' epsilon when \code{type.c = 4}.
 #' @param type.c Integer. 1=defines \code{c.r} as a zero-entry vector; 2=lets
 #' the user define \code{c.r} freely; 3=assigns \code{c.r} an
 #' exponential prior distribution with mean \code{epsilon}; 4=assigns \code{c.r} 
 #' an exponential hierarchical distribution with mean \code{epsilon} which in turn has a
-#' a Ga(0.01, 0.01) distribution.
+#' a Ga(a.eps, b.eps) distribution.
 #' @param epsilon Double. Mean of the exponential distribution assigned to
 #' \code{c.r}
 #' @param iterations Integer. Number of iterations including the \code{burn.in}
@@ -59,7 +63,8 @@
 #' @export BeMRes
 BeMRes <-
   function(times, delta = rep(1, length(times)), alpha = rep(0.0001, K), 
-           beta = rep(0.0001, K), c.r = rep(0, K-1), type.c = 4, 
+           beta = rep(0.0001, K), c.r = rep(0, K-1), 
+           a.eps = 0.1, b.eps = 0.1, type.c = 4, 
            epsilon =  1, iterations = 2000, 
            burn.in = floor(iterations * 0.2), thinning = 5, printtime = TRUE) {  
     tInit <- proc.time()
@@ -144,7 +149,7 @@ BeMRes <-
       Pi.r <- UpdPi(alpha, beta, c.r, u.r, n, m)
       if (type.c == 3 || type.c == 4) {
         if (type.c == 4) {
-          epsilon <- rgamma(1, shape = 0.01 + K, scale = 1 / (0.01 + sum(c.r)))
+          epsilon <- rgamma(1, shape = a.eps + K, scale = 1 / (b.eps + sum(c.r)))
         }
         c.r <- BeUpdC(alpha, beta, Pi.r, u.r, epsilon)
       }
