@@ -91,12 +91,11 @@ BePloth <-
       ggthemes::theme_tufte() +
       ggplot2::theme(axis.line = ggplot2::element_line(colour = "black"),
             legend.position="bottom")
-    
-    S <- s$SUM.S %>% ggplot2::ggplot() + ggplot2::geom_step(na.rm = T, ggplot2::aes(x = t, y = `S^(t)`,color = "Model estimate"),direction = "vh") + 
+    S <- s$SUM.S %>% ggplot2::ggplot() + ggplot2::geom_step(na.rm = T, ggplot2::aes(x = t, y = `S^(t)`,color = "Model estimate")) + 
       ggplot2::scale_color_manual(limits = c("Model estimate","Kaplan-Meier"),values = c("black","#b22222")) +
       ggplot2::guides(color = ggplot2::guide_legend(title = "")) +
-      ggplot2::geom_step(na.rm = T, ggplot2::aes(x = t, y = lower), alpha = 0.5,direction = "vh", linetype = "dashed") + 
-      ggplot2::geom_step(na.rm = T, ggplot2::aes(x = t, y = upper), alpha = 0.5,direction = "vh", linetype = "dashed") + 
+      ggplot2::geom_step(na.rm = T, ggplot2::aes(x = t, y = lower), alpha = 0.5, linetype = "dashed") + 
+      ggplot2::geom_step(na.rm = T, ggplot2::aes(x = t, y = upper), alpha = 0.5, linetype = "dashed") + 
       ggplot2::scale_y_continuous(limits = c(0,1)) + 
       ggplot2::ggtitle(paste0("Estimate of Survival Function with intervals at ", confidence * 100,"%  of credibility")) +
       ggplot2::labs(x = "t",
@@ -112,7 +111,7 @@ BePloth <-
       km.data <- tibble::tibble(time = fit$time,surv = fit$surv, lower = fit$lower,
                         upper = fit$upper)
       if(km.data$time[1]!= 0){
-        km.data <- dplyr::bind_rows(tibble::tibble(time = 0, surv = 1, lower = NA, upper = NA),km.data)
+        km.data <- dplyr::bind_rows(tibble::tibble(time = 0, surv = 1, lower = 1, upper = 1),km.data)
       }
       na.data <- tibble::tibble(time = fit$time, h.est = fit$n.event / fit$n.risk)
       h <- h + ggplot2::geom_point(data = na.data, ggplot2::aes(x = time, y = h.est, color = "Nelson-Aalen based estimate"))
