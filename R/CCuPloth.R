@@ -14,6 +14,7 @@
 #' @param type.h character. "segment"= use segments to plot hazard rates,
 #' "line" = link hazard rates by a line
 #' @param qn Numeric. Quantile for Tao (cure time) that should be visualized on the plot.
+#' @param intervals logical. If TRUE, plots credible intervals.
 #' @param confidence Numeric. Confidence level.
 #' @param summary Logical. If \code{TRUE}, a summary for the hazard and survival
 #' functions is returned as a tibble.
@@ -68,7 +69,7 @@
 #' 
 #' @export CCuPloth
 CCuPloth <-
-  function(M, new_obs = NULL, type.h= "segment",qn = 0.5,
+  function(M, new_obs = NULL, type.h= "segment",qn = 0.5, intervals = T,
            confidence = 0.95, summary = FALSE) {
     SUM <- CCuLambdaSumm(M, new = new_obs, confidence)
     h <- extract(SUM, "SUM.h")
@@ -77,81 +78,90 @@ CCuPloth <-
     Z <- extract(SUM, c("simulations","Z"))
     SUM.Pi <- extract(SUM,"SUM.pi")
     v <- rlang::set_names(purrr::map(list("tao",
-                            "K"), ~extract(M,.x)),c("tao","K"))
+                                          "K"), ~extract(M,.x)),c("tao","K"))
     tao <- v$tao
     K <- v$K
     ribbon <- purrr::map2(.x = SUM.Z,h,~tibble::tibble(x = seq(to = tao[dplyr::pull(.x, 4) + 1],
-                                                from = tao[dplyr::pull(.x, 2) + 1], by = 0.1),
-                                        y = max(.y$upper)))
+                                                               from = tao[dplyr::pull(.x, 2) + 1], by = 0.1),
+                                                       y = max(.y$upper)))
     
     if(type.h == "segment") h.graf <- purrr::pmap(list(h,S,SUM.Z,SUM.Pi,Z, ribbon,seq_along(h)),function(h,S,SUM.Z,SUM.Pi,Z,ribbon,ind){
       if(is.null(new_obs)) tit <- "median observation" else{
         tit <- sprintf("observation %s",ind)
       }
-      ggplot2::ggplot(h) + 
+      out <- ggplot2::ggplot(h) + 
         ggplot2::geom_segment(ggplot2::aes(x = tao[-(K+1)], xend = tao[-1], 
-                         y = mean, yend = mean)) + 
-        ggplot2::geom_errorbar(ggplot2::aes(ymin = lower, ymax = upper, x = (tao[-(K+1)] + tao[-1])/2, width = tao[-1]-tao[-(K+1)]), 
-                      alpha = 0.5, color = "gray50") +
+                                           y = mean, yend = mean)) + 
         ggplot2::xlab("Time") + ggplot2::ylab("Hazard rate") + ggplot2::scale_alpha_continuous(guide = F) + 
         ggplot2::ggtitle(paste0("Estimate of hazard rates for ",tit," with intervals at ",confidence * 100,"% of credibility")) +
-        ggplot2::geom_ribbon(data = ribbon, ggplot2::aes(x= x, ymin = 0, ymax = y), 
-                    alpha = .1, fill = "red") + 
         ggplot2::geom_vline(xintercept = round(tao[quantile(Z,qn)+1],2), linetype = "dotted") +
         ggplot2::annotate("text",x = round(tao[dplyr::pull(SUM.Z, 4) + 1],2), y = max(h$upper),
-                 label = paste0(expression(tau[z])," ==", round(tao[quantile(Z,qn)+1],2)),
-                 hjust = -.1, vjust = 1,parse = T) +
+                          label = paste0(expression(tau[z])," ==", round(tao[quantile(Z,qn)+1],2)),
+                          hjust = -.1, vjust = 1,parse = T) +
         ggplot2::annotate("text",x = round(tao[dplyr::pull(SUM.Z, 4) + 1],2), y = max(h$upper),
-                 label = paste0(expression(pi)," == ", round(dplyr::pull(SUM.Pi, mean),2)),
-                 hjust = -.1, vjust = 2.5,parse = T) +
+                          label = paste0(expression(pi)," == ", round(dplyr::pull(SUM.Pi, mean),2)),
+                          hjust = -.1, vjust = 2.5,parse = T) +
         ggthemes::theme_tufte() +
         ggplot2::theme(axis.line = ggplot2::element_line(colour = "black"))
+      if(intervals){
+        out <- out + ggplot2::geom_errorbar(ggplot2::aes(ymin = lower, ymax = upper, x = (tao[-(K+1)] + tao[-1])/2, width = tao[-1]-tao[-(K+1)]), 
+                                            alpha = 0.5, color = "gray50") +
+          ggplot2::geom_ribbon(data = ribbon, ggplot2::aes(x= x, ymin = 0, ymax = y), 
+                               alpha = .1, fill = "red")
+      }
+      return(out)
     })
     
     if(type.h == "line") h.graf <- purrr::pmap(list(h,S,SUM.Z,SUM.Pi,Z, ribbon,seq_along(h)),function(h,S,SUM.Z,SUM.Pi,Z,ribbon,ind){
       if(is.null(new_obs)) tit <- "median observation" else{
         tit <- sprintf("observation %s",ind)
       }
-      ggplot2::ggplot(h) + 
+      out <- ggplot2::ggplot(h) + 
         ggplot2::geom_line(ggplot2::aes(x = (tao[-(K+1)] + tao[-1])/2, y = mean)) + 
-        ggplot2::geom_ribbon(ggplot2::aes(x = (tao[-(K+1)] + tao[-1])/2, ymin = lower, ymax = upper), alpha = .5, fill = "gray70") +
         ggplot2::xlab("Time") + ggplot2::ylab("Hazard rate") + ggplot2::scale_alpha_continuous(guide = F) + 
         ggplot2::ggtitle(paste0("Estimate of hazard rates for ",tit," with intervals at ",confidence * 100,"% of credibility")) +
-        ggplot2::geom_ribbon(data = ribbon, ggplot2::aes(x= x, ymin = 0, ymax = y), 
-                    alpha = .1, fill = "red") + 
         ggplot2::geom_vline(xintercept = round(tao[quantile(Z,qn)+1],2), linetype = "dotted") +
         ggplot2::annotate("text",x = round(tao[dplyr::pull(SUM.Z, 4) + 1],2), y = max(h$upper),
-                 label = paste0(expression(tau[z])," ==", round(tao[quantile(Z,qn)+1],2)),
-                 hjust = -.1, vjust = 1,parse = T) +
+                          label = paste0(expression(tau[z])," ==", round(tao[quantile(Z,qn)+1],2)),
+                          hjust = -.1, vjust = 1,parse = T) +
         ggplot2::annotate("text",x = round(tao[dplyr::pull(SUM.Z, 4) + 1],2), y = max(h$upper),
-                 label = paste0(expression(pi)," == ", round(dplyr::pull(SUM.Pi, mean),2)),
-                 hjust = -.1, vjust = 2.5,parse = T) +
+                          label = paste0(expression(pi)," == ", round(dplyr::pull(SUM.Pi, mean),2)),
+                          hjust = -.1, vjust = 2.5,parse = T) +
         ggthemes::theme_tufte() +
         ggplot2::theme(axis.line = ggplot2::element_line(colour = "black"))
+      if(intervals){
+        out <- out + ggplot2::geom_ribbon(ggplot2::aes(x = (tao[-(K+1)] + tao[-1])/2, ymin = lower, ymax = upper), alpha = .5, fill = "gray70") +
+          ggplot2::geom_ribbon(data = ribbon, ggplot2::aes(x= x, ymin = 0, ymax = y), 
+                               alpha = .1, fill = "red")
+      }
+      return(out)
     })
     
     S.graf <- purrr::pmap(list(h,S,SUM.Z,SUM.Pi,Z, ribbon,seq_along(h)),function(h,S,SUM.Z,SUM.Pi,Z,ribbon,ind){
       if(is.null(new_obs)) tit <- "median observation" else{
         tit <- sprintf("observation %s",ind)
       }
-      ggplot2::ggplot(S) + ggplot2::geom_line(ggplot2::aes(x = t, y = `S^(t)`)) + 
-        ggplot2::geom_ribbon(ggplot2::aes(x = t, ymin = lower, ymax = upper), fill = "gray50", alpha = 0.3) + 
+      out <- ggplot2::ggplot(S) + ggplot2::geom_line(ggplot2::aes(x = t, y = `S^(t)`)) + 
         ggplot2::scale_y_continuous(limits = c(0,1)) + 
         ggplot2::ggtitle(paste0("Estimate of Survival Function for ",tit," with intervals at ", confidence * 100,"%  of credibility")) +
         ggplot2::labs(x = "t",
-             y = expression(S^{(t)})) +
-        ggplot2::geom_ribbon(data = ribbon, ggplot2::aes(x= x, ymin = 0, ymax = 1), 
-                    alpha = .1, fill = "red") + 
+                      y = expression(S^{(t)})) +
         ggplot2::geom_vline(xintercept = round(tao[quantile(Z,qn)+1],2), linetype = "dotted") +
         ggplot2::geom_hline(yintercept = round(dplyr::pull(SUM.Pi, mean),4), linetype = "dotted") +
         ggplot2::annotate("text",x = round(tao[dplyr::pull(SUM.Z, 4) + 1],2), y = 1,
-                 label = paste0(expression(tau[z])," ==", round(tao[quantile(Z,qn)+1],2)),
-                 hjust = -.1, vjust = 1,parse = T) +
+                          label = paste0(expression(tau[z])," ==", round(tao[quantile(Z,qn)+1],2)),
+                          hjust = -.1, vjust = 1,parse = T) +
         ggplot2::annotate("text",x = 0, y = round(dplyr::pull(SUM.Pi, mean),4),
-                 label = paste0(expression(pi)," == ", round(dplyr::pull(SUM.Pi, mean),4)),
-                 hjust = 0, vjust = -2.5,parse = T) +
+                          label = paste0(expression(pi)," == ", round(dplyr::pull(SUM.Pi, mean),4)),
+                          hjust = 0, vjust = -2.5,parse = T) +
         ggthemes::theme_tufte() +
         ggplot2::theme(axis.line = ggplot2::element_line(colour = "black"))
+      if(intervals){
+        out <- out + ggplot2::geom_ribbon(ggplot2::aes(x = t, ymin = lower, ymax = upper), fill = "gray50", alpha = 0.3) + 
+          ggplot2::geom_ribbon(data = ribbon, ggplot2::aes(x= x, ymin = 0, ymax = 1), 
+                               alpha = .1, fill = "red")
+      }
+      return(out)
     })
     if (summary == TRUE) {
       return(list(h.graf,S.graf, SUM))
