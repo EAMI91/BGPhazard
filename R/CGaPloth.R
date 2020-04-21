@@ -17,9 +17,10 @@
 #' columns have to be the same as the data input.
 #' @param type.h character. "segment"= use segments to plot hazard rates,
 #' "line" = link hazard rates by a line
-#' @param coxSurv boolean. Add estimated Survival function with the Cox-Model
+#' @param coxSurv logical. Add estimated Survival function with the Cox-Model
+#' @param intervals logical. If TRUE, plots confidence bands for the selected functions including Cox-Model.
 #' @param confidence Numeric. Confidence level.
-#' @param summary Logical. If \code{TRUE}, a summary for hazard and survival
+#' @param summary logical. If \code{TRUE}, a summary for hazard and survival
 #' functions is returned as a tibble.
 #' @return \item{SUM.h}{Numeric tibble. Summary for the mean, median, and a
 #' \code{confint / 100} confidence interval for each segment of the hazard
@@ -51,7 +52,7 @@
 #' 
 #' @export CGaPloth
 CGaPloth <-
-  function(M, new_obs = NULL, type.h= "segment", coxSurv = T,
+  function(M, new_obs = NULL, type.h= "segment", coxSurv = T, intervals = T,
            confidence = 0.95, summary = FALSE) {
     SUM <- CGaLambdaSumm(M, new = new_obs, confidence)
     h <- extract(SUM, "SUM.h")
@@ -69,23 +70,25 @@ CGaPloth <-
     times <- v$times
     data <- v$data
     
-    if(type.h == "segment") h.graf <- purrr::imap(h,~
-    {
+    if(type.h == "segment") h.graf <- purrr::imap(h,~{
       if(.y == 1) tit <- "Estimate of Baseline Hazard Rates"
       if(.y == 2) tit <- "Estimate of Hazard Rates for median observation"
       if(!.y %in% c(1,2)) tit <- sprintf("Estimate of Hazard Rates for observation %s",.y-2)
-      .x %>% ggplot2::ggplot() + 
+      out <- .x %>% ggplot2::ggplot() + 
         ggplot2::geom_segment(ggplot2::aes(x = tao[-(K+1)], xend = tao[-1], 
-                         y = mean, yend = mean, color = "Hazard Function")) + 
+                                           y = mean, yend = mean, color = "Hazard Function")) +
         ggplot2::scale_color_manual(values = c("black"), limits = "Hazard Function") +
         ggplot2::guides(color = ggplot2::guide_legend(title = "")) +
-        ggplot2::geom_errorbar(ggplot2::aes(ymin = lower, ymax = upper, x = (tao[-(K+1)] + tao[-1])/2, width = tao[-1]-tao[-(K+1)]), 
-                      alpha = 0.5, color = "gray50") + 
         ggplot2::xlab("Time") + ggplot2::ylab("Hazard rate") + ggplot2::scale_alpha_continuous(guide = F) + 
         ggplot2::ggtitle(paste0(tit," with intervals at ",confidence * 100,"% of credibility")) +
         ggthemes::theme_tufte() +
         ggplot2::theme(axis.line = ggplot2::element_line(colour = "black"),
-              legend.position="bottom")
+                       legend.position="bottom")
+      if(intervals){
+        out <- out + ggplot2::geom_errorbar(ggplot2::aes(ymin = lower, ymax = upper, x = (tao[-(K+1)] + tao[-1])/2, width = tao[-1]-tao[-(K+1)]), 
+                                            alpha = 0.5, color = "gray50")
+      }
+      return(out)
     }
     )
     
@@ -93,37 +96,42 @@ CGaPloth <-
       if(.y == 1) tit <- "Estimate of Baseline Hazard Rates"
       if(.y == 2) tit <- "Estimate of Hazard Rates for median observation"
       if(!.y %in% c(1,2)) tit <- sprintf("Estimate of hazard rates for observation %s",.y-2)
-      .x %>% ggplot2::ggplot() + 
+      out <- .x %>% ggplot2::ggplot() + 
         ggplot2::geom_line(ggplot2::aes(x = (tao[-(K+1)] + tao[-1])/2, y = mean, color = "Hazard Function")) +
         ggplot2::scale_color_manual(values = c("black"), limits = "Hazard Function") +
         ggplot2::guides(color = ggplot2::guide_legend(title = "")) +
-        ggplot2::geom_ribbon(ggplot2::aes(x = (tao[-(K+1)] + tao[-1])/2, ymin = lower, ymax = upper), alpha = .5, fill = "gray70") + 
         ggplot2::xlab("Time") + ggplot2::ylab("Hazard rate") + ggplot2::scale_alpha_continuous(guide = F) + 
         ggplot2::ggtitle(paste0(tit," with intervals at ",confidence * 100,"%  of credibility")) +
         ggthemes::theme_tufte() +
         ggplot2::theme(axis.line = ggplot2::element_line(colour = "black"),
-              legend.position="bottom")
+                       legend.position="bottom")
+      if(intervals){
+        out <- out + ggplot2::geom_ribbon(ggplot2::aes(x = (tao[-(K+1)] + tao[-1])/2, ymin = lower, ymax = upper), alpha = .5, fill = "gray70")
+      }
+      return(out)
     }
     
     )
     
     
-    S.graf <- purrr::imap(S,~
-    {
+    S.graf <- purrr::imap(S,~{
       if(.y == 1) tit <- "Estimate of Baseline Survival Function"
       if(.y == 2) tit <- "Estimate of Survival Function for median observation"
       if(!.y %in% c(1,2)) tit <- sprintf("Estimate of Survival Function for observation %s",.y-2)
-      .x %>% ggplot2::ggplot() + ggplot2::geom_line(ggplot2::aes(x = t, y = `S^(t)`,color = "Model estimate")) + 
+      out <- .x %>% ggplot2::ggplot() + ggplot2::geom_line(ggplot2::aes(x = t, y = `S^(t)`,color = "Model estimate")) + 
         ggplot2::scale_color_manual(limits = c("Model estimate"),values = c("black")) +
         ggplot2::guides(color = ggplot2::guide_legend(title = "")) +
-        ggplot2::geom_ribbon(ggplot2::aes(x = t, ymin = lower, ymax = upper), fill = "gray50", alpha = 0.3) +
         ggplot2::scale_y_continuous(limits = c(0,1)) + 
         ggplot2::ggtitle(paste0(tit," with intervals at ", confidence * 100,"%  of credibility")) +
         ggplot2::labs(x = "t",
-             y = expression(S^{(t)})) +
+                      y = expression(S^{(t)})) +
         ggthemes::theme_tufte() +
         ggplot2::theme(axis.line = ggplot2::element_line(colour = "black"),
-              legend.position = "bottom")
+                       legend.position = "bottom")
+      if(intervals){
+        out <- out + ggplot2::geom_ribbon(ggplot2::aes(x = t, ymin = lower, ymax = upper), fill = "gray50", alpha = 0.3)
+      }
+      return(out)
     }
     )
     
@@ -131,7 +139,7 @@ CGaPloth <-
       t<-survival::Surv(times,delta)
       xfitc<-survival::coxph(as.formula(sprintf("t~%s",paste(names(data),collapse = "+"))),data=data)
       data.b <- rep(0,ncol(data)) %>% matrix(nrow = 1,byrow = T) %>% 
-      tibble::as_tibble() %>% rlang::set_names(names(data))
+        tibble::as_tibble() %>% rlang::set_names(names(data))
       data.m <- data %>% dplyr::summarise_all(median)
       new <- rbind(data.b,data.m,new_obs)
       
@@ -145,12 +153,12 @@ CGaPloth <-
         }
         S.graf[[.x]] + ggplot2::geom_step(data = km.data,na.rm = T, ggplot2::aes(x = time,y = surv), color = "#b22222") + 
           ggplot2::scale_color_manual(limits = c("Model estimate","Cox proportional hazards"),
-                             values = c("black","#b22222")) 
+                                      values = c("black","#b22222")) 
       })
     }
     
     if (summary == TRUE) {
-      return(SUM)
+      return(list(h.graf, S.graf, SUM))
     } else{
       return(list(h.graf, S.graf))
     }

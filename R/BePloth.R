@@ -16,6 +16,7 @@
 #' @param add.survival logical, If \code{TRUE}, plots the Nelson-Alen based
 #' estimate in the same graphic of the hazard rate and the Kaplan-Meier
 #' estimates of the survival function.
+#' @param intervals logical. If TRUE, plots confidence bands for the selected functions including Nelson-Aalen and/or Kaplan-Meier estimate.
 #' @param confidence Numeric. Confidence band width.
 #' @param summary Logical. If \code{TRUE}, a summary for hazard and survival
 #' functions is returned as a tibble.
@@ -53,7 +54,7 @@
 #' 
 #' @export BePloth
 BePloth <-
-  function(M, type.h = "dot", add.survival = T, 
+  function(M, type.h = "dot", add.survival = T, intervals = T,
            confidence = 0.95, summary = FALSE) {
     SUM <- PiSumm(M, confidence)
     s <- SUM %>% tibble::deframe()
@@ -61,64 +62,75 @@ BePloth <-
               "K",
               "times",
               "delta"
-              ) %>% purrr::map(~extract(M,.x)) %>% rlang::set_names(c("tao","K","times","delta"))
+    ) %>% purrr::map(~extract(M,.x)) %>% rlang::set_names(c("tao","K","times","delta"))
     tao <- v$tao
     K <- v$K
     delta <- v$delta
     times <- v$times
     
-    if(type.h == "dot") h <- s$SUM.h %>% ggplot2::ggplot() + 
-      ggplot2::geom_point(ggplot2::aes(x = tao[-1], 
-                       y = mean, color = "Hazard Function")) + 
-      ggplot2::scale_color_manual(values = c("black","#b22222")) +
-      ggplot2::guides(color = ggplot2::guide_legend(title = "")) +
-      ggplot2::geom_errorbar(ggplot2::aes(ymin = lower, ymax = upper, x = tao[-1]), 
-                    alpha = 0.5, color = "gray50", width = 1) + 
-      ggplot2::guides(color = ggplot2::guide_legend(title = "")) +
-      ggplot2::xlab("Time") + ggplot2::ylab("Hazard rate") + ggplot2::scale_alpha_continuous(guide = F) + 
-      ggplot2::ggtitle(paste0("Estimate of hazard rates with intervals at ",confidence * 100,"% of credibility")) +
-      ggthemes::theme_tufte() +
-      ggplot2::theme(axis.line = ggplot2::element_line(colour = "black"),
-            legend.position="bottom")
+    if(type.h == "dot") {
+      h <- s$SUM.h %>% ggplot2::ggplot() + 
+        ggplot2::geom_point(ggplot2::aes(x = tao[-1], 
+                                         y = mean, color = "Hazard Function")) + 
+        ggplot2::scale_color_manual(values = c("black","#b22222")) +
+        ggplot2::guides(color = ggplot2::guide_legend(title = "")) +
+        ggplot2::guides(color = ggplot2::guide_legend(title = "")) +
+        ggplot2::xlab("Time") + ggplot2::ylab("Hazard rate") + ggplot2::scale_alpha_continuous(guide = F) + 
+        ggplot2::ggtitle(paste0("Estimate of hazard rates with intervals at ",confidence * 100,"% of credibility")) +
+        ggthemes::theme_tufte() +
+        ggplot2::theme(axis.line = ggplot2::element_line(colour = "black"),
+                       legend.position="bottom")
+      if(intervals){
+        h <- h + ggplot2::geom_errorbar(ggplot2::aes(ymin = lower, ymax = upper, x = tao[-1]), 
+                                        alpha = 0.5, color = "gray50", width = 1)  
+      } 
+    }
+    if(type.h == "line"){ 
+      h <- s$SUM.h %>% ggplot2::ggplot() + 
+        ggplot2::geom_line(ggplot2::aes(x = (tao[-(K+1)] + tao[-1])/2, y = mean, color = "Hazard Function")) +
+        ggplot2::scale_color_manual(values = c("black","#b22222")) +
+        ggplot2::guides(color = ggplot2::guide_legend(title = "")) +
+        ggplot2::xlab("Time") + ggplot2::ylab("Hazard rate") + ggplot2::scale_alpha_continuous(guide = F) + 
+        ggplot2::ggtitle(paste0("Estimate of hazard rates with intervals at ",confidence * 100,"%  of credibility")) +
+        ggthemes::theme_tufte() +
+        ggplot2::theme(axis.line = ggplot2::element_line(colour = "black"),
+                       legend.position="bottom")
+      if(intervals){
+        h <- h + ggplot2::geom_ribbon(ggplot2::aes(x = (tao[-(K+1)] + tao[-1])/2, ymin = lower, ymax = upper), alpha = .5, fill = "gray70")
+      }
+    }
     
-    if(type.h == "line") h <- s$SUM.h %>% ggplot2::ggplot() + 
-      ggplot2::geom_line(ggplot2::aes(x = (tao[-(K+1)] + tao[-1])/2, y = mean, color = "Hazard Function")) +
-      ggplot2::geom_ribbon(ggplot2::aes(x = (tao[-(K+1)] + tao[-1])/2, ymin = lower, ymax = upper), alpha = .5, fill = "gray70") +
-      ggplot2::scale_color_manual(values = c("black","#b22222")) +
-      ggplot2::guides(color = ggplot2::guide_legend(title = "")) +
-      ggplot2::xlab("Time") + ggplot2::ylab("Hazard rate") + ggplot2::scale_alpha_continuous(guide = F) + 
-      ggplot2::ggtitle(paste0("Estimate of hazard rates with intervals at ",confidence * 100,"%  of credibility")) +
-      ggthemes::theme_tufte() +
-      ggplot2::theme(axis.line = ggplot2::element_line(colour = "black"),
-            legend.position="bottom")
     S <- s$SUM.S %>% ggplot2::ggplot() + ggplot2::geom_step(na.rm = T, ggplot2::aes(x = t, y = `S^(t)`,color = "Model estimate")) + 
       ggplot2::scale_color_manual(limits = c("Model estimate","Kaplan-Meier"),values = c("black","#b22222")) +
       ggplot2::guides(color = ggplot2::guide_legend(title = "")) +
-      ggplot2::geom_step(na.rm = T, ggplot2::aes(x = t, y = lower), alpha = 0.5, linetype = "dashed") + 
-      ggplot2::geom_step(na.rm = T, ggplot2::aes(x = t, y = upper), alpha = 0.5, linetype = "dashed") + 
       ggplot2::scale_y_continuous(limits = c(0,1)) + 
       ggplot2::ggtitle(paste0("Estimate of Survival Function with intervals at ", confidence * 100,"%  of credibility")) +
       ggplot2::labs(x = "t",
-           y = expression(S^{(t)})) +
+                    y = expression(S^{(t)})) +
       ggthemes::theme_tufte() +
       ggplot2::theme(axis.line = ggplot2::element_line(colour = "black"),
-            legend.position = "bottom")
-    
+                     legend.position = "bottom")
+    if(intervals){
+      S <- S + ggplot2::geom_step(na.rm = T, ggplot2::aes(x = t, y = lower), alpha = 0.5, linetype = "dashed") + 
+        ggplot2::geom_step(na.rm = T, ggplot2::aes(x = t, y = upper), alpha = 0.5, linetype = "dashed")
+    }
     
     if(add.survival){
       fit <- survival::survfit(survival::Surv(time = times, event = delta) ~ 1, 
-                     conf.int = confidence)
+                               conf.int = confidence)
       km.data <- tibble::tibble(time = fit$time,surv = fit$surv, lower = fit$lower,
-                        upper = fit$upper)
+                                upper = fit$upper)
       if(km.data$time[1]!= 0){
         km.data <- dplyr::bind_rows(tibble::tibble(time = 0, surv = 1, lower = 1, upper = 1),km.data)
       }
       na.data <- tibble::tibble(time = fit$time, h.est = fit$n.event / fit$n.risk)
       h <- h + ggplot2::geom_point(data = na.data, ggplot2::aes(x = time, y = h.est, color = "Nelson-Aalen based estimate"))
-        
-      S <- S + ggplot2::geom_step(data = km.data, na.rm = T, ggplot2::aes(x = time,y = surv, color = "Kaplan-Meier")) + 
-        ggplot2::geom_step(data = km.data, na.rm = T, ggplot2::aes(x = time, y = lower), alpha = 0.5, color = "#b22222", linetype = "dashed") + 
-        ggplot2::geom_step(data = km.data, na.rm = T, ggplot2::aes(x = time, y = upper), alpha = 0.5, color = "#b22222", linetype = "dashed") 
+      
+      S <- S + ggplot2::geom_step(data = km.data, na.rm = T, ggplot2::aes(x = time,y = surv, color = "Kaplan-Meier")) 
+      if(intervals){
+        S <- S + ggplot2::geom_step(data = km.data, na.rm = T, ggplot2::aes(x = time, y = lower), alpha = 0.5, color = "#b22222", linetype = "dashed") + 
+          ggplot2::geom_step(data = km.data, na.rm = T, ggplot2::aes(x = time, y = upper), alpha = 0.5, color = "#b22222", linetype = "dashed") 
+      }
     }
     
     if (summary == TRUE) {

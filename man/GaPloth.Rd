@@ -4,8 +4,8 @@
 \alias{GaPloth}
 \title{Plots for the Hazard and Survival Function Estimates}
 \usage{
-GaPloth(M, type.h = "segment", addSurvival = T, confidence = 0.95,
-  summary = FALSE)
+GaPloth(M, type.h = "segment", addSurvival = T, intervals = T,
+  confidence = 0.95, summary = FALSE)
 }
 \arguments{
 \item{M}{tibble. Contains the output by \code{CGaMRres} and \code{GaMRes}.}
@@ -16,6 +16,8 @@ GaPloth(M, type.h = "segment", addSurvival = T, confidence = 0.95,
 \item{addSurvival}{Logical. If \code{TRUE}, Nelson-Aalen estimate is plotted
 over the hazard function and Kaplan-Meier estimate is plotted over the
 survival function.}
+
+\item{intervals}{logical. If TRUE, plots confidence bands for the selected functions including Nelson-Aalen and/or Kaplan-Meier estimate.}
 
 \item{confidence}{Numeric. Confidence level.}
 
