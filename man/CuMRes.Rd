@@ -4,11 +4,12 @@
 \alias{CuMRes}
 \title{Bayesian Semiparametric Cure Rate Model with an Unknown Threshold}
 \usage{
-CuMRes(times, delta = rep(1, length(times)), type.t = 3, length,
-  K = 50, alpha = rep(0.01, K), beta = rep(0.01, K), c.r = rep(1,
-  (K - 1)), type.c = 4, epsilon = 1, c.nu = 1, a.eps = 0.1,
-  b.eps = 0.1, a.mu = 0.01, b.mu = 0.01, iterations = 1000,
-  burn.in = floor(iterations * 0.2), thinning = 5, printtime = TRUE)
+CuMRes(times, delta = rep(1, length(times)), type.t = 3,
+  length = NULL, K = 50, alpha = rep(0.01, K), beta = rep(0.01, K),
+  c.r = rep(1, (K - 1)), type.c = 4, epsilon = 1, c.nu = 1,
+  a.eps = 0.1, b.eps = 0.1, a.mu = 0.01, b.mu = 0.01,
+  iterations = 1000, burn.in = floor(iterations * 0.2), thinning = 5,
+  printtime = TRUE)
 }
 \arguments{
 \item{times}{Numeric positive vector. Failure times.}
