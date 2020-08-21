@@ -4,8 +4,14 @@
 \alias{GaPloth}
 \title{Plots for the Hazard and Survival Function Estimates}
 \usage{
-GaPloth(M, type.h = "segment", addSurvival = T, intervals = T,
-  confidence = 0.95, summary = FALSE)
+GaPloth(
+  M,
+  type.h = "segment",
+  addSurvival = T,
+  intervals = T,
+  confidence = 0.95,
+  summary = FALSE
+)
 }
 \arguments{
 \item{M}{tibble. Contains the output by \code{CGaMRres} and \code{GaMRes}.}

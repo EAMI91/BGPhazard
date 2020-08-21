@@ -4,11 +4,26 @@
 \alias{CGaMRes}
 \title{Markov Gamma Model with Covariates}
 \usage{
-CGaMRes(data, type.t = 2, length = 1, K = 5, alpha = rep(0.01, K),
-  beta = rep(0.01, K), c.r = rep(1, K - 1), c.nu = 1,
-  var.theta.str = 25, var.theta.ini = 100, a.eps = 0.1,
-  b.eps = 0.1, type.c = 4, epsilon = 1, iterations = 1000,
-  burn.in = floor(iterations * 0.2), thinning = 3, printtime = TRUE)
+CGaMRes(
+  data,
+  type.t = 2,
+  length = 1,
+  K = 5,
+  alpha = rep(0.01, K),
+  beta = rep(0.01, K),
+  c.r = rep(1, K - 1),
+  c.nu = 1,
+  var.theta.str = 25,
+  var.theta.ini = 100,
+  a.eps = 0.1,
+  b.eps = 0.1,
+  type.c = 4,
+  epsilon = 1,
+  iterations = 1000,
+  burn.in = floor(iterations * 0.2),
+  thinning = 3,
+  printtime = TRUE
+)
 }
 \arguments{
 \item{data}{Double tibble. Contains failure times in the first column,
