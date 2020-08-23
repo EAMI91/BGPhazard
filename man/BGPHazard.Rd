@@ -3,6 +3,7 @@
 \docType{package}
 \name{BGPHazard}
 \alias{BGPHazard}
+\alias{BGPHazard-package}
 \title{BGPHazard: A package bayesian nonparametric inference in survival analysis.}
 \description{
 The BGPHazard package provides three categories of important functions:

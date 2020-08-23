@@ -4,15 +4,8 @@
 \alias{BSBSam}
 \title{BSBHaz posterior samples using Gibbs Sampler}
 \usage{
-BSBSam(
-  bsb_init,
-  iter,
-  burn_in = 0,
-  omega_d = NULL,
-  gamma_d = NULL,
-  theta_d = NULL,
-  seed = 42
-)
+BSBSam(bsb_init, iter, burn_in = 0, omega_d = NULL, gamma_d = NULL,
+  theta_d = NULL, seed = 42)
 }
 \arguments{
 \item{bsb_init}{An object of class 'BSBinit' created by

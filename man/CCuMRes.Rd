@@ -5,30 +5,13 @@
 \title{Bayesian Semiparametric Cure Rate Model with an Unknown Threshold and
 Covariate Information}
 \usage{
-CCuMRes(
-  data,
-  covs.x = names(data)[seq.int(3, ncol(data))],
-  covs.y = names(data)[seq.int(3, ncol(data))],
-  type.t = 3,
-  length,
-  K = 50,
-  alpha = rep(0.01, K),
-  beta = rep(0.01, K),
-  c.r = rep(0, K - 1),
-  c.nu = 1,
-  var.theta.str = 25,
-  var.delta.str = 25,
-  var.theta.ini = 100,
-  var.delta.ini = 100,
-  type.c = 4,
-  a.eps = 0.1,
-  b.eps = 0.1,
-  epsilon = 1,
-  iterations = 5000,
-  burn.in = floor(iterations * 0.2),
-  thinning = 3,
-  printtime = TRUE
-)
+CCuMRes(data, covs.x = names(data)[seq.int(3, ncol(data))],
+  covs.y = names(data)[seq.int(3, ncol(data))], type.t = 3, length,
+  K = 50, alpha = rep(0.01, K), beta = rep(0.01, K), c.r = rep(0, K
+  - 1), c.nu = 1, var.theta.str = 25, var.delta.str = 25,
+  var.theta.ini = 100, var.delta.ini = 100, type.c = 4,
+  a.eps = 0.1, b.eps = 0.1, epsilon = 1, iterations = 5000,
+  burn.in = floor(iterations * 0.2), thinning = 3, printtime = TRUE)
 }
 \arguments{
 \item{data}{Double tibble. Contains failure times in the first column,
