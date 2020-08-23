@@ -1,0 +1,106 @@
+---
+title: "Bivariate Model Example"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Bivariate Model Example}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.width=8,
+  fig.height=6,
+  fig.align = "center"
+)
+```
+
+```{r setup}
+library(BGPhazard)
+library(dplyr)
+library(ggplot2)
+```
+
+We will use the built-in dataset `KIDNEY` to show how the bivariate model functions work. All the functions for the bivariate model start with the letters **BSB**, which stand for *Bayesian Semiparametric Bivariate*.
+
+```{r}
+KIDNEY
+```
+
+## Initial setup
+
+First, we use the `BSBInit` function to create the necessary data structure that we have to feed the Gibbs Sampler. We can skim the data structure with the summary and print methods.
+
+```{r}
+bsb_init <- BSBInit(
+  KIDNEY,
+  alpha = 0.001,
+  beta = 0.001,
+  c = 1000,
+  part_len = 10,
+  seed = 42
+  )
+
+summary(bsb_init)
+```
+ 
+Our data consists of 38 individuals with two failure times each. For the first failure time `t1` we have six censored observations, while for the second failure time we have twelve. The model will use `sex` as a predictor variable.
+
+## Gibbs Sampler
+
+To obtain the posterior samples, we use the function `BSBSam`. We run 100 iterations with a burn-in period of 10. The number of simulations is low in order to reduce the complexity of building this vignette. In practice, you should see how many iterations the model needs to reach convergence.
+
+```{r}
+samples <- BSBSam(
+  bsb_init,
+  iter = 100,
+  burn_in = 10,
+  gamma_d = 50, 
+  theta_d = 0.3, 
+  seed = 42
+)
+
+print(samples)
+```
+
+The `print` method shows that we only kept the last 90 iterations as posterior simulations.
+
+## Summaries
+
+### Tables
+
+We can get posterior sample summaries with the function `get_summaries`. This function returns the posterior mean and a 0.95 probability interval for all the model parameters. Additionally, it returns the acceptance rate for variables sampled using the Metropolis-Hastings algorithm.
+
+```{r}
+BSBSumm(samples, "omega1")
+BSBSumm(samples, "lambda1")
+```
+
+It is important to notice that `lambda1` and `lambda2` are the estimated hazard rates for the baseline hazards $h_0$. They do not include the effect of predictor variables. The same applies for the survival function estimates `s1` and `s2`.
+
+### Plots
+
+We can get two summary plots: estimated hazard rates and estimated survival functions.
+
+**Baseline hazards**
+
+```{r}
+BSBPlotSumm(samples, "lambda1")
+BSBPlotSumm(samples, "lambda2")
+```
+
+**Survival functions**
+
+```{r}
+BSBPlotSumm(samples, "s1")
+BSBPlotSumm(samples, "s2")
+```
+
+You can also get diagnostic plots for the simulated variables. Choose the type of plot with the argument `type`.
+
+```{r}
+BSBPlotDiag(samples, "omega1", type = "traceplot")
+BSBPlotDiag(samples, "omega1", type = "ergodic_means")
+```
