@@ -3,11 +3,11 @@ CuUpdZ <-
     k <- length(lambda.r)
     propfz <- purrr::map_dbl(seq.int(k.star,k), function(z){
       logfz <- (z - 1) * log(mu) - lgamma(z) - sum( m[seq_len(z)] * lambda.r[seq_len(z)] )
-      fz <- exp(logfz)
-      return(fz)
+      # fz <- exp(logfz)
+      return(logfz)
     })
     if(length(propfz) == 1) z <- k else{
-      z <- sample(x = seq.int(k.star,k), size = 1, prob = propfz)
+      z <- sample(x = seq.int(k.star,k), size = 1, prob = as.numeric(brob(propfz)/sum(brob(propfz))))
     }
     return(z)
   }
