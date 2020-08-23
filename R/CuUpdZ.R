@@ -7,7 +7,7 @@ CuUpdZ <-
       return(logfz)
     })
     if(length(propfz) == 1) z <- k else{
-      z <- sample(x = seq.int(k.star,k), size = 1, prob = as.numeric(brob(propfz)/sum(brob(propfz))))
+      z <- sample(x = seq.int(k.star,k), size = 1, prob = as.numeric(Brobdingnag::brob(propfz)/sum(Brobdingnag::brob(propfz))))
     }
     return(z)
   }

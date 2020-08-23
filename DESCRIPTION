@@ -24,7 +24,8 @@ Imports:
     rlang,
     stringr,
     tidyr,
-    progress
+    progress,
+    Brobdingnag
 NeedsCompilation: no
 Repository: CRAN
 Date/Publication: 2020-01-06
