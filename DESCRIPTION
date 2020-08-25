@@ -30,8 +30,8 @@ NeedsCompilation: no
 Repository: CRAN
 Date/Publication: 2020-01-06
 RoxygenNote: 7.1.1
-URL: https://github.com/EAMI91
-BugReports: https://github.com/EAMI91/issues
+URL: https://github.com/EAMI91/BGPhazard
+BugReports: https://github.com/EAMI91/BGPhazard/issues
 Suggests: 
     testthat,
     knitr,
