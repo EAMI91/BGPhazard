@@ -70,18 +70,24 @@ BSBSam <- function(bsb_init,
   delta2 <- bsb_init$delta2
   omega1 <- bsb_init$omega1
   omega2 <- bsb_init$omega2
-  y <- bsb_init$y
-  gamma <- bsb_init$gamma
+  pred_matrix <- bsb_init$pred_matrix
+  theta <- bsb_init$theta
+  t_part <- bsb_init$t_part
   lambda1 <- bsb_init$lambda1
   lambda2 <- bsb_init$lambda2
+  omega1 <- pmax(
+    omega1, cum_h(t1, t_part, lambda1) * exp(pred_matrix %*% theta) + 1e-5
+    )
+  omega2 <- pmax(
+    omega2, cum_h(t2, t_part, lambda2) * exp(pred_matrix %*% theta) + 1e-5
+    )
+  y <- bsb_init$y
+  gamma <- bsb_init$gamma
   u1 <- bsb_init$u1
   u2 <- bsb_init$u2
-  theta <- bsb_init$theta
   alpha <- bsb_init$alpha
   beta <- bsb_init$beta
   c <- bsb_init$c
-  pred_matrix <- bsb_init$pred_matrix
-  t_part <- bsb_init$t_part
   int_len <- t_part[[2]] - t_part[[1]]
   n_obs <- attr(bsb_init, "individuals")
   n_intervals <- attr(bsb_init, "intervals")
@@ -147,34 +153,41 @@ BSBSam <- function(bsb_init,
     
     t_part_low1 <- purrr::map_dbl(part_loc1, ~t_part[.])
     t_part_low2 <- purrr::map_dbl(part_loc2, ~t_part[.])
-    lambda_bounds1 <- purrr::map_dbl(
-      1:length(lambda1),
-      ~get_min_bound(t1_current, omega1, x, part_loc1, t_part_low1, ., theta,
-                     lambda1, int_len)
-    )
-    lambda_bounds2 <- purrr::map_dbl(
-      1:length(lambda2),
-      ~get_min_bound(t2_current, omega2, x, part_loc2, t_part_low2, ., theta,
-                     lambda2, int_len)
-    )
     u1_1 <- u1
     u1_2 <- c(0, u1[1:(length(u1) - 1)])
     u2_1 <- u2
     u2_2 <- c(0, u2[1:(length(u2) - 1)])
     c1 <- rep(c, times = length(lambda1))
     c2 <- c(0, c1[1:(length(c1) - 1)])
-    lambda1 <- purrr::pmap_dbl(
-      list(u1_1, u1_2, c1, c2, lambda_bounds1, part_count1),
-      function(u1_1, u1_2, c1, c2, min_bound, part_count) {
-        sample_lambda(u1_1, u1_2, alpha, beta, c1, c2, min_bound, part_count)
-      }
-    )
-    lambda2 <- purrr::pmap_dbl(
-      list(u2_1, u2_2, c1, c2, lambda_bounds2, part_count2),
-      function(u2_1, u2_2, c1, c2, min_bound, part_count) {
-        sample_lambda(u2_1, u2_2, alpha, beta, c1, c2, min_bound, part_count)
-      }
-    )
+    
+    for (j in seq_along(lambda1)) {
+      bound1 <- get_min_bound(t1_current,
+                              omega1,
+                              x,
+                              part_loc1,
+                              t_part_low1,
+                              j,
+                              theta,
+                              lambda1,
+                              int_len)
+      bound2 <- get_min_bound(t2_current,
+                              omega2,
+                              x,
+                              part_loc2,
+                              t_part_low2,
+                              j,
+                              theta,
+                              lambda2,
+                              int_len)
+      lambda1[[j]] <- sample_lambda(
+        u1_1[[j]], u1_2[[j]], alpha, beta, c1[[j]], c2[[j]], bound1,
+        part_count1[[j]]
+        )
+      lambda2[[j]] <- sample_lambda(
+        u2_1[[j]], u2_2[[j]], alpha, beta, c1[[j]], c2[[j]], bound2,
+        part_count2[[j]]
+      )
+    }
     
     index_indicator <- c(rep(1, times = (length(u1) - 1)), 0)
     lambda1_lag <- c(lambda1[2:length(lambda1)], 1)
@@ -195,19 +208,14 @@ BSBSam <- function(bsb_init,
     gamma <- sample_gamma(gamma, omega1, omega2, y, gamma_d)
     
     if (has_predictors) {
-      theta_bound1 <- purrr::map_dbl(
-        1:length(theta),
-        ~ get_min_bound_theta(., t1_current, omega1, cum_h1, x, theta)
-      )
-      theta_bound2 <- purrr::map_dbl(
-        1:length(theta),
-        ~ get_min_bound_theta(., t2_current, omega2, cum_h2, x, theta)
-      )
-      theta_bound <- pmin(theta_bound1, theta_bound2)
-      theta <- purrr::pmap_dbl(
-        list(theta_bound, colSums(pred_matrix), theta),
-        function(x1, x2, x3) {sample_theta(x1, x2, x3, theta_d)}
-      )
+      for (j in seq_along(theta)) {
+        bound1 <- get_min_bound_theta(j, t1_current, omega1, cum_h1, x, theta)
+        bound2 <- get_min_bound_theta(j, t2_current, omega2, cum_h2, x, theta)
+        bound <- min(bound1, bound2)
+        theta[[j]] <- sample_theta(
+          bound, colSums(pred_matrix)[[j]], theta[[j]], theta_d
+          )
+      }
     }
     
     t1_current <- purrr::pmap_dbl(

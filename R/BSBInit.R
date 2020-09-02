@@ -152,8 +152,10 @@ BSBInit <- function(df = NULL,
   omega2 <- stats::rgamma(n = n_obs, shape = 2, rate = 1)
   theta <- stats::rnorm(n = ncol(pred_matrix))
   n_intervals <- length(t_part) - 1
-  lambda1 <- stats::rgamma(n = n_intervals, shape = 2, rate = 1)
-  lambda2 <- stats::rgamma(n = n_intervals, shape = 2, rate = 1)
+  lambda1 <- stats::rgamma(n = n_intervals, shape = alpha, rate = beta)
+  lambda2 <- stats::rgamma(n = n_intervals, shape = alpha, rate = beta)
+  lambda1 <- pmax(lambda1, rep(1e-5, times = n_intervals))
+  lambda2 <- pmax(lambda2, rep(1e-5, times = n_intervals))
   u1 <- stats::rpois(n = n_intervals, lambda = lambda1)
   u2 <- stats::rpois(n = n_intervals, lambda = lambda2)
   
