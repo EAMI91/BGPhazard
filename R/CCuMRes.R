@@ -82,7 +82,7 @@
 CCuMRes <-
   function(data, covs.x = names(data)[seq.int(3,ncol(data))], 
            covs.y = names(data)[seq.int(3,ncol(data))], 
-           type.t = 3, length, K = 50, alpha = rep(0.01, K),
+           type.t = 3, length = NULL, K = 50, alpha = rep(0.01, K),
            beta = rep(0.01, K), c.r = rep(0, K - 1), c.nu = 1, 
            var.theta.str = 25, var.delta.str = 25, var.theta.ini = 100, var.delta.ini = 100,
            type.c = 4, a.eps = 0.1, b.eps = 0.1, epsilon = 1, iterations = 5000, 
