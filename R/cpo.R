@@ -42,14 +42,14 @@ cpo <- function(res){
   if(length(aux$S) == 1) aux$S <- aux$S %>% purrr::pluck(1)
   if(length(aux$lambda) == 1) aux$lambda <- aux$lambda %>% purrr::pluck(1)
   uncensored <- aux$times[aux$delta == 1] %>%
-    cut(aux$tao,labels = F) %>%
+    cut(aux$tao,labels = F,include.lowest = T) %>%
     purrr::map2_dbl(.y = aux$times[aux$delta == 1] %>%
                cut(aux$s,labels = F,include.lowest = T), 
              ~(mean(((tibble::as_tibble(aux$lambda) %>% dplyr::pull(.x)) * (aux$S %>% purrr::pluck(.y)))^(-1)))^(-1)
     )
   
   censored <- aux$times[aux$delta == 0] %>%
-    cut(aux$s,labels = F) %>% 
+    cut(aux$s,labels = F,include.lowest = T) %>% 
     purrr::map_dbl(~mean(aux$S[[.x]]^(-1))^(-1) ) 
   
   g <- tibble::tibble(times=c(aux$times[aux$delta == 1],
