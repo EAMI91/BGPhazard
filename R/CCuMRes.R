@@ -97,7 +97,7 @@ CCuMRes <-
     
     covar2 <- covar
     
-    median.obs <- purrr::map_df(covar, ~quantile(x = .x, probs = .5))
+    median.obs <- covar %>% dplyr::summarise(dplyr::across(dplyr::everything(),~quantile(x = .x, probs = .5)))
     
     k.const <- as.numeric(covar %>% dplyr::summarise_all(.funs = ~max(abs(.x))))
     covar %<>% purrr::modify2(.y = k.const, .f = ~.x/.y)
@@ -205,7 +205,7 @@ CCuMRes <-
     Z <- matrix(NA, nrow = iterations, ncol = ind)
     Delta <- matrix(NA, nrow = iterations, ncol = p)
     k_i <- rep(1, length(times))
-    k_i[delta==1] <- as.numeric(cut(times[delta==1],tao,labels = seq_len(length(tao)-1)))
+    k_i[delta==1] <- as.numeric(cut(times[delta==1],tao,labels = seq_len(length(tao)-1),include.lowest = T,right = T))
     z <- k_i
     lambda.r <- rep(0.1, K)
     theta <- rep(0, p)
