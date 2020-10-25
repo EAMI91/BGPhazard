@@ -25,7 +25,7 @@
 #' @param c.r Nonnegative vector. The higher the entries, the higher the correlation of two consecutive intervals.
 #' @param type.c 1=defines \code{c.r} as a zero-entry vector; 2=lets the user
 #' define \code{c.r} freely; 3=assigns \code{c.r} by computing an exponential
-#' prior distribution with mean 1; 4=assigns \code{c.r} by computing an exponential hierarchical
+#' prior distribution with mean epsilon; 4=assigns \code{c.r} by computing an exponential hierarchical
 #' distribution with mean \code{epsilon} which in turn has a Ga(a.eps, b.eps)
 #' distribution.
 #' @param epsilon Double. Mean of the exponential distribution assigned to
@@ -112,7 +112,7 @@ CuMRes <-
     if (abs(type.c - round(type.c)) > tol || type.c < 1 || type.c > 4) {
       stop ("Invalid argument: 'type.c' must be an integer between 1 and 4.")
     }
-    if (type.c %in% c(1, 2)) {
+    if (type.c %in% c( 2)) {
       if (length(c.r) != (K - 1)) {
         stop (c("Invalid argument: 'c.r' must have length, ", K - 1))
       }
@@ -121,8 +121,8 @@ CuMRes <-
       }
     }
     if (type.c == 1 && sum(abs(c.r)) != (K-1) ) {
-      c.r <- rep(1, K - 1)
-      warning (c("'c.r' redefined as rep(1,", K - 1, ") because type.c = 1."))
+      c.r <- rep(0, K - 1)
+      warning (c("'c.r' redefined as rep(0,", K - 1, ") because type.c = 1."))
     }
     if (type.c == 3 && epsilon < 0) {
       stop ("Invalid argument: 'epsilon' must be nonnegative.")
@@ -165,7 +165,7 @@ CuMRes <-
     Mu <- rep(NA, iterations)
     Z <- rep(NA, iterations) #iniciar vector de tiempo de quiebre
     Pi <- rep(NA, iterations) #iniciar vector de probabilidades
-    k.star <- min(which(max(times[delta==1]) < tao)) - 1 #k m?s grande donde hay al menos una observaci?n exacta
+    k.star <- min(which(max(times[delta==1]) <= tao)) - 1 #k m?s grande donde hay al menos una observaci?n exacta
     z <- k.star # inicial para tiempo de quiebre
     pb <- dplyr::progress_estimated(iterations)
     for(j in seq_len(iterations)) {
