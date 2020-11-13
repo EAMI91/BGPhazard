@@ -13,9 +13,12 @@ theta_restriction <- function(t, omega, cum_h, x, theta_index, theta) {
     return(bound)
   }
 
-  (log(omega) - log(cum_h) - x %*% theta + current_th * current_x) / current_x
+  out <-
+    (log(omega) - log(cum_h) - x %*% theta + current_th * current_x) / current_x
+  
+  return(out)
 
-}
+  }
 
 
 # get_min_bound_theta -----------------------------------------------------
@@ -61,6 +64,8 @@ sample_theta <- function(bound, sum_x, theta, theta_d = NULL) {
       proposal * (2 * sum_x - 0.5 * proposal) - theta * (2 * sum_x - 0.5 * theta)
     alpha <- min(exp(l_rho), 1)
     u <- stats::runif(n = 1)
-    theta + (proposal - theta) * (u <= alpha)
+    out <- theta + (proposal - theta) * (u <= alpha)
+    
+    return(out)
 
 }

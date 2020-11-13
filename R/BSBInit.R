@@ -1,13 +1,14 @@
 #' Initial setup for BSBHaz model
 #'
 #' \code{BSBInit} creates the necessary data structure for use in
-#' \code{BSBSam}.
+#' \code{\link{BSBHaz}}.
 #'
-#' This function reads and formats the data in the following way. If \code{df}
-#' is provided, failure times and censoring indicadors are assumed to be columns
-#' named 't1', 't2', 'delta1', and 'delta2'. Other columns not named 'id'
-#' (ignoring case) are taken to be predictors. If \code{df} has no columns
-#' 'delta1' or 'delta2', observations are taken as exact.
+#' This function reads and formats censored bivariate survival data in the
+#' following way. If \code{df} is provided, failure times and censoring
+#' indicadors are assumed to be columns named 't1', 't2', 'delta1', and
+#' 'delta2'. Other columns not named 'id' (ignoring case) are taken to be
+#' predictors. If \code{df} has no columns 'delta1' or 'delta2', observations
+#' are taken as exact.
 #'
 #' If \code{df} is not provided, then \code{t1} and \code{t2} are expected to be
 #' objects of class 'Surv' created by \code{\link[survival]{Surv}} and the model

@@ -1,7 +1,7 @@
 #' Get posterior summaries for BSBHaz model
 #'
 #' @param bsbhaz An object of class 'BSBHaz' created by
-#'   \code{\link{BSBSam}}.
+#'   \code{\link{BSBHaz}}.
 #' @param variable A character indicating which variable to get summaries from.
 #'
 #' @return A data frame with posterior sample means and a 95 \% probability
@@ -15,7 +15,7 @@
 #' t2 <- survival::Surv(c(1, 2, 3))
 #'
 #' init <- BSBInit(t1 = t1, t2 = t2, seed = 0)
-#' samples <- BSBSam(init, iter = 10, omega_d = 2,
+#' samples <- BSBHaz(init, iter = 10, omega_d = 2,
 #' gamma_d = 10, seed = 10)
 #'
 #' BSBSumm(samples, variable = "gamma")

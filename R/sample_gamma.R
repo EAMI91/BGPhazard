@@ -12,9 +12,9 @@ log_density_gamma <- function(gamma, proposal, omega1, omega2, y, gamma_d) {
   pi <- (2 * n - 2) * (log(1 + proposal) - log(1 + gamma)) +
     sum_y * (log(proposal) - log(gamma) + log(1 + proposal) - log(1 + gamma)) -
     sum_omega * (proposal - gamma)
-  q <- log(proposal) - log(gamma)
+  # q <- log(proposal) - log(gamma)
 
-  pi + q
+  return(pi)
 
 }
 
@@ -24,12 +24,18 @@ log_density_gamma <- function(gamma, proposal, omega1, omega2, y, gamma_d) {
 # Samples from gamma posterior
 sample_gamma <- function(gamma, omega1, omega2, y, gamma_d) {
 
-  if (is.null(gamma_d)) gamma_d <- 2
-  proposal <- stats::rgamma(n = 1, shape = gamma_d, rate = gamma_d / gamma)
+  # if (is.null(gamma_d)) gamma_d <- 2
+  if (is.null(gamma_d)) gamma_d <- gamma * 0.5
+  l1 <- max(0, gamma - gamma_d)
+  l2 <- gamma + gamma_d
+  # proposal <- stats::rgamma(n = 1, shape = gamma_d, rate = gamma_d / gamma)
+  proposal <- stats::runif(n = 1, min = min(l1, l2), max = max(l1, l2))
   l_density <- log_density_gamma(gamma, proposal, omega1, omega2, y, gamma_d)
   alpha <- min(exp(l_density), 1)
   u <- stats::runif(n = 1)
 
-  gamma + (proposal - gamma) * (u <= alpha)
+  out <- gamma + (proposal - gamma) * (u <= alpha)
+  
+  return(out)
 
 }

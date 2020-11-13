@@ -1,23 +1,23 @@
 #' BSBHaz posterior samples using Gibbs Sampler
 #'
-#' \code{BSBSam} samples posterior observations from the bivariate
-#' survival model proposed by Nieto-Barajas & Walker (2007).
+#' \code{BSBHaz} samples posterior observations from the bivariate survival
+#' model (BSBHaz model) proposed by Nieto-Barajas & Walker (2007).
 #'
-#' The samples from omega, gamma, and theta are obtained using the
-#' Metropolis-Hastings algorithm. The proposal distributions are uniform for
-#' omega and theta, and gamma for gamma. The parameters \code{omega_d} and
-#' \code{theta_d} modify the intervals from which the uniform proposals are
-#' sampled. If these parameters are too large, the acceptance rates will
-#' decrease and the chains will get stuck. On the other hand, if these
-#' parameters are small, the acceptance rate will be too high and the chains
-#' will not explore the posterior support effectively.
+#' BSBHaz (Nieto-Barajas & Walker, 2007) is a bayesian semiparametric model for
+#' bivariate survival data. The marginal densities are nonparametric survival
+#' models and the joint density is constructed via a mixture. Dependence between
+#' failure times is modeled using two frailties, and the dependence between
+#' these frailties is modeled with a copula.
 #'
-#' The proposals for gamma are obtained with \code{rgamma(shape = gamma_d, rate
-#' = gamma_d / x)}, where \code{x} is the value of the chain at the previous
-#' iteration. This means that \code{gamma_d} is related to the variance and the
-#' coefficient of variation of the proposals. All these parameters have default
-#' values, but the user should really determine which values yield the best
-#' results.
+#' This command obtains posterior samples from model parameters. The samples
+#' from omega, gamma, and theta are obtained using the Metropolis-Hastings
+#' algorithm. The proposal distributions are uniform for the three parameters.
+#' The parameters \code{omega_d}, \code{gamma_d} and \code{theta_d} modify the
+#' intervals from which the uniform proposals are sampled. If these parameters
+#' are too large, the acceptance rates will decrease and the chains will get
+#' stuck. On the other hand, if these parameters are small, the acceptance rates
+#' will be too high and the chains will not explore the posterior support
+#' effectively.
 #'
 #' @param bsb_init An object of class 'BSBinit' created by
 #'   \code{\link{BSBInit}}.
@@ -28,9 +28,9 @@
 #' @param omega_d A positive double. This parameter defines the interval used in
 #'   the Metropolis-Hastings algorithm to sample proposals for omega. See
 #'   details.
-#' @param gamma_d A positive double. This parameter defines the distribution
-#'   used in the Metropolis-Hastings algorithm to sample proposals for omega.
-#'   See details.
+#' @param gamma_d A positive double. This parameter defines the interval used in
+#'   the Metropolis-Hastings algorithm to sample proposals for gamma. See
+#'   details.
 #' @param theta_d A positive double. This parameter defines the interval used in
 #'   the Metropolis-Hastings algorithm to sample proposals for theta. See
 #'   details.
@@ -45,9 +45,9 @@
 #' t2 <- survival::Surv(c(1, 2, 3))
 #'
 #' init <- BSBInit(t1 = t1, t2 = t2, seed = 0)
-#' samples <- BSBSam(init, iter = 10, omega_d = 2,
+#' samples <- BSBHaz(init, iter = 10, omega_d = 2,
 #' gamma_d = 10, seed = 10)
-BSBSam <- function(bsb_init,
+BSBHaz <- function(bsb_init,
                    iter,
                    burn_in = 0,
                    omega_d = NULL,
@@ -251,13 +251,18 @@ BSBSam <- function(bsb_init,
             "lambda1" = lambda1_mat, "lambda2" = lambda2_mat,
             "gamma" = gamma_mat, "t1" = t1_mat, "t2" = t2_mat,
             "s1" = s1_mat, "s2" = s2_mat)
+  
   if (has_predictors) l$theta <- theta_mat
-  new_BSBHaz(l,
-             individuals = as.integer(n_obs),
-             intervals = as.integer(n_intervals),
-             has_predictors = has_predictors,
-             samples = as.integer(iter - burn_in),
-             int_len = as.double(int_len)
-  )
+  
+  out <- new_BSBHaz(
+    l,
+    individuals = as.integer(n_obs),
+    intervals = as.integer(n_intervals),
+    has_predictors = has_predictors,
+    samples = as.integer(iter - burn_in),
+    int_len = as.double(int_len)
+    )
+  
+  return(out)
   
 }

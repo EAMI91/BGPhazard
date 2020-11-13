@@ -41,6 +41,8 @@ prob_y <- function(omega1, omega2, gamma) {
 
   y <- y[1:j] / acum
   prob_fun <- cumsum(y)
+  
+  return(prob_fun)
 
 }
 
@@ -65,5 +67,7 @@ sample_y <- function(omega1, omega2, gamma) {
   }
 
   y <- index - 1
+  
+  return(y)
 
 }

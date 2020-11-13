@@ -50,14 +50,14 @@ Our data consists of 38 individuals with two failure times each. For the first f
 
 ## Gibbs Sampler
 
-To obtain the posterior samples, we use the function `BSBSam`. We run 100 iterations with a burn-in period of 10. The number of simulations is low in order to reduce the complexity of building this vignette. In practice, you should see how many iterations the model needs to reach convergence.
+To obtain the posterior samples, we use the function `BSBHaz`. We run 100 iterations with a burn-in period of 10. The number of simulations is low in order to reduce the complexity of building this vignette. In practice, you should see how many iterations the model needs to reach convergence.
 
 ```{r}
-samples <- BSBSam(
+samples <- BSBHaz(
   bsb_init,
   iter = 100,
   burn_in = 10,
-  gamma_d = 50, 
+  gamma_d = 0.6, 
   theta_d = 0.3, 
   seed = 42
 )
