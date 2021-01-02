@@ -1,23 +1,23 @@
 #' BSBHaz posterior samples using Gibbs Sampler
 #'
-#' \code{BSBSam} samples posterior observations from the bivariate
-#' survival model proposed by Nieto-Barajas & Walker (2007).
+#' \code{BSBHaz} samples posterior observations from the bivariate survival
+#' model (BSBHaz model) proposed by Nieto-Barajas & Walker (2007).
 #'
-#' The samples from omega, gamma, and theta are obtained using the
-#' Metropolis-Hastings algorithm. The proposal distributions are uniform for
-#' omega and theta, and gamma for gamma. The parameters \code{omega_d} and
-#' \code{theta_d} modify the intervals from which the uniform proposals are
-#' sampled. If these parameters are too large, the acceptance rates will
-#' decrease and the chains will get stuck. On the other hand, if these
-#' parameters are small, the acceptance rate will be too high and the chains
-#' will not explore the posterior support effectively.
+#' BSBHaz (Nieto-Barajas & Walker, 2007) is a bayesian semiparametric model for
+#' bivariate survival data. The marginal densities are nonparametric survival
+#' models and the joint density is constructed via a mixture. Dependence between
+#' failure times is modeled using two frailties, and the dependence between
+#' these frailties is modeled with a copula.
 #'
-#' The proposals for gamma are obtained with \code{rgamma(shape = gamma_d, rate
-#' = gamma_d / x)}, where \code{x} is the value of the chain at the previous
-#' iteration. This means that \code{gamma_d} is related to the variance and the
-#' coefficient of variation of the proposals. All these parameters have default
-#' values, but the user should really determine which values yield the best
-#' results.
+#' This command obtains posterior samples from model parameters. The samples
+#' from omega, gamma, and theta are obtained using the Metropolis-Hastings
+#' algorithm. The proposal distributions are uniform for the three parameters.
+#' The parameters \code{omega_d}, \code{gamma_d} and \code{theta_d} modify the
+#' intervals from which the uniform proposals are sampled. If these parameters
+#' are too large, the acceptance rates will decrease and the chains will get
+#' stuck. On the other hand, if these parameters are small, the acceptance rates
+#' will be too high and the chains will not explore the posterior support
+#' effectively.
 #'
 #' @param bsb_init An object of class 'BSBinit' created by
 #'   \code{\link{BSBInit}}.
@@ -28,9 +28,9 @@
 #' @param omega_d A positive double. This parameter defines the interval used in
 #'   the Metropolis-Hastings algorithm to sample proposals for omega. See
 #'   details.
-#' @param gamma_d A positive double. This parameter defines the distribution
-#'   used in the Metropolis-Hastings algorithm to sample proposals for omega.
-#'   See details.
+#' @param gamma_d A positive double. This parameter defines the interval used in
+#'   the Metropolis-Hastings algorithm to sample proposals for gamma. See
+#'   details.
 #' @param theta_d A positive double. This parameter defines the interval used in
 #'   the Metropolis-Hastings algorithm to sample proposals for theta. See
 #'   details.
@@ -45,9 +45,9 @@
 #' t2 <- survival::Surv(c(1, 2, 3))
 #'
 #' init <- BSBInit(t1 = t1, t2 = t2, seed = 0)
-#' samples <- BSBSam(init, iter = 10, omega_d = 2,
+#' samples <- BSBHaz(init, iter = 10, omega_d = 2,
 #' gamma_d = 10, seed = 10)
-BSBSam <- function(bsb_init,
+BSBHaz <- function(bsb_init,
                    iter,
                    burn_in = 0,
                    omega_d = NULL,
@@ -70,18 +70,24 @@ BSBSam <- function(bsb_init,
   delta2 <- bsb_init$delta2
   omega1 <- bsb_init$omega1
   omega2 <- bsb_init$omega2
-  y <- bsb_init$y
-  gamma <- bsb_init$gamma
+  pred_matrix <- bsb_init$pred_matrix
+  theta <- bsb_init$theta
+  t_part <- bsb_init$t_part
   lambda1 <- bsb_init$lambda1
   lambda2 <- bsb_init$lambda2
+  omega1 <- pmax(
+    omega1, cum_h(t1, t_part, lambda1) * exp(pred_matrix %*% theta) + 1e-5
+    )
+  omega2 <- pmax(
+    omega2, cum_h(t2, t_part, lambda2) * exp(pred_matrix %*% theta) + 1e-5
+    )
+  y <- bsb_init$y
+  gamma <- bsb_init$gamma
   u1 <- bsb_init$u1
   u2 <- bsb_init$u2
-  theta <- bsb_init$theta
   alpha <- bsb_init$alpha
   beta <- bsb_init$beta
   c <- bsb_init$c
-  pred_matrix <- bsb_init$pred_matrix
-  t_part <- bsb_init$t_part
   int_len <- t_part[[2]] - t_part[[1]]
   n_obs <- attr(bsb_init, "individuals")
   n_intervals <- attr(bsb_init, "intervals")
@@ -147,34 +153,41 @@ BSBSam <- function(bsb_init,
     
     t_part_low1 <- purrr::map_dbl(part_loc1, ~t_part[.])
     t_part_low2 <- purrr::map_dbl(part_loc2, ~t_part[.])
-    lambda_bounds1 <- purrr::map_dbl(
-      1:length(lambda1),
-      ~get_min_bound(t1_current, omega1, x, part_loc1, t_part_low1, ., theta,
-                     lambda1, int_len)
-    )
-    lambda_bounds2 <- purrr::map_dbl(
-      1:length(lambda2),
-      ~get_min_bound(t2_current, omega2, x, part_loc2, t_part_low2, ., theta,
-                     lambda2, int_len)
-    )
     u1_1 <- u1
     u1_2 <- c(0, u1[1:(length(u1) - 1)])
     u2_1 <- u2
     u2_2 <- c(0, u2[1:(length(u2) - 1)])
     c1 <- rep(c, times = length(lambda1))
     c2 <- c(0, c1[1:(length(c1) - 1)])
-    lambda1 <- purrr::pmap_dbl(
-      list(u1_1, u1_2, c1, c2, lambda_bounds1, part_count1),
-      function(u1_1, u1_2, c1, c2, min_bound, part_count) {
-        sample_lambda(u1_1, u1_2, alpha, beta, c1, c2, min_bound, part_count)
-      }
-    )
-    lambda2 <- purrr::pmap_dbl(
-      list(u2_1, u2_2, c1, c2, lambda_bounds2, part_count2),
-      function(u2_1, u2_2, c1, c2, min_bound, part_count) {
-        sample_lambda(u2_1, u2_2, alpha, beta, c1, c2, min_bound, part_count)
-      }
-    )
+    
+    for (j in seq_along(lambda1)) {
+      bound1 <- get_min_bound(t1_current,
+                              omega1,
+                              x,
+                              part_loc1,
+                              t_part_low1,
+                              j,
+                              theta,
+                              lambda1,
+                              int_len)
+      bound2 <- get_min_bound(t2_current,
+                              omega2,
+                              x,
+                              part_loc2,
+                              t_part_low2,
+                              j,
+                              theta,
+                              lambda2,
+                              int_len)
+      lambda1[[j]] <- sample_lambda(
+        u1_1[[j]], u1_2[[j]], alpha, beta, c1[[j]], c2[[j]], bound1,
+        part_count1[[j]]
+        )
+      lambda2[[j]] <- sample_lambda(
+        u2_1[[j]], u2_2[[j]], alpha, beta, c1[[j]], c2[[j]], bound2,
+        part_count2[[j]]
+      )
+    }
     
     index_indicator <- c(rep(1, times = (length(u1) - 1)), 0)
     lambda1_lag <- c(lambda1[2:length(lambda1)], 1)
@@ -195,19 +208,14 @@ BSBSam <- function(bsb_init,
     gamma <- sample_gamma(gamma, omega1, omega2, y, gamma_d)
     
     if (has_predictors) {
-      theta_bound1 <- purrr::map_dbl(
-        1:length(theta),
-        ~ get_min_bound_theta(., t1_current, omega1, cum_h1, x, theta)
-      )
-      theta_bound2 <- purrr::map_dbl(
-        1:length(theta),
-        ~ get_min_bound_theta(., t2_current, omega2, cum_h2, x, theta)
-      )
-      theta_bound <- pmin(theta_bound1, theta_bound2)
-      theta <- purrr::pmap_dbl(
-        list(theta_bound, colSums(pred_matrix), theta),
-        function(x1, x2, x3) {sample_theta(x1, x2, x3, theta_d)}
-      )
+      for (j in seq_along(theta)) {
+        bound1 <- get_min_bound_theta(j, t1_current, omega1, cum_h1, x, theta)
+        bound2 <- get_min_bound_theta(j, t2_current, omega2, cum_h2, x, theta)
+        bound <- min(bound1, bound2)
+        theta[[j]] <- sample_theta(
+          bound, colSums(pred_matrix)[[j]], theta[[j]], theta_d
+          )
+      }
     }
     
     t1_current <- purrr::pmap_dbl(
@@ -243,13 +251,18 @@ BSBSam <- function(bsb_init,
             "lambda1" = lambda1_mat, "lambda2" = lambda2_mat,
             "gamma" = gamma_mat, "t1" = t1_mat, "t2" = t2_mat,
             "s1" = s1_mat, "s2" = s2_mat)
+  
   if (has_predictors) l$theta <- theta_mat
-  new_BSBHaz(l,
-             individuals = as.integer(n_obs),
-             intervals = as.integer(n_intervals),
-             has_predictors = has_predictors,
-             samples = as.integer(iter - burn_in),
-             int_len = as.double(int_len)
-  )
+  
+  out <- new_BSBHaz(
+    l,
+    individuals = as.integer(n_obs),
+    intervals = as.integer(n_intervals),
+    has_predictors = has_predictors,
+    samples = as.integer(iter - burn_in),
+    int_len = as.double(int_len)
+    )
+  
+  return(out)
   
 }

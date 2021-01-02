@@ -32,6 +32,9 @@ sample_t <- function(t_orig,
   }
 
   proposal <- stats::uniroot(f, lower = 0 , upper = up)$root
-  t_prev + (proposal - t_prev) * (proposal > bound & proposal <= max_part)
+  out <-
+    t_prev + (proposal - t_prev) * (proposal > bound & proposal <= max_part)
+  
+  return(out)
 
 }
