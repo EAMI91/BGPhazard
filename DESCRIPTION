@@ -2,7 +2,7 @@ Package: BGPhazard
 Version: 2.1.0
 Title: Markov Beta and Gamma Processes for Modeling Hazard Rates
 Author: L. E. Nieto-Barajas, J. A. Garcia Bueno, E.A. Morones Ishikawa and
-    J. Pliego San Martin
+    J. Pliego
 Maintainer: Emilio Akira Morones Ishikawa <emiliomorones@gmail.com>
 Depends: R(>= 3.1.2)
 Description: Computes the hazard rate estimate as described by Nieto-Barajas &

@@ -8,9 +8,9 @@ BSBPlotSumm(bsbhaz, variable = c("lambda1", "lambda2", "s1", "s2"))
 }
 \arguments{
 \item{bsbhaz}{An object of class 'BSBHaz' created by
-\code{\link{BSBSam}}.}
+\code{\link{BSBHaz}}.}
 
-\item{variable}{A character indicating which variable to get the plot from.}
+\item{variable}{A character indicating the variable to plot.}
 }
 \description{
 Plot summaries for BSBHaz model
@@ -20,7 +20,7 @@ t1 <- survival::Surv(c(1, 2, 3))
 t2 <- survival::Surv(c(1, 2, 3))
 
 init <- BSBInit(t1 = t1, t2 = t2, seed = 0)
-samples <- BSBSam(init, iter = 10, omega_d = 2,
+samples <- BSBHaz(init, iter = 10, omega_d = 2,
 gamma_d = 10, seed = 10)
 
 BSBPlotSumm(samples, "s1")

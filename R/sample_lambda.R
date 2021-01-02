@@ -95,19 +95,26 @@ sample_lambda <- function(u1, u2, alpha, beta, c1, c2, min_bound, part_count) {
   # c2 = c1 if lambda is not in the first interval
   alpha_l <- alpha + u1 + u2 + part_count
   beta_l <- beta + c1 + c2
-
-  if (min_bound < 1e-6) min_bound <- 1
+  
+  if (min_bound < 1e-5) min_bound <- 1e-5
   denominator <- stats::pgamma(min_bound * beta_l, shape = alpha_l, rate = 1)
-  if (denominator == 0) denominator <- 0.005
+  if (denominator < 1e-5) denominator <- 1e-5
   unif <- stats::runif(n = 1)
 
   f <- function(x) {
     stats::pgamma(x, shape = alpha_l, rate = 1) / denominator - unif
   }
+  
+  if (f(min_bound * beta_l) <= 0) {
+    solution <- min_bound * beta_l
+  } else {
+    solution <- stats::uniroot(f, lower = 0, upper = min_bound * beta_l)$root
+  }
 
-  solution <- stats::uniroot(f, lower = 0, upper = min_bound * beta_l)$root
+  
   lambda_prueba <- solution / beta_l
   if (lambda_prueba < 1e-5) lambda_prueba <- 1e-5
-  lambda <- lambda_prueba
+  
+  return(lambda_prueba)
 
 }

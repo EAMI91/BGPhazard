@@ -1,13 +1,14 @@
 #' Initial setup for BSBHaz model
 #'
 #' \code{BSBInit} creates the necessary data structure for use in
-#' \code{BSBSam}.
+#' \code{\link{BSBHaz}}.
 #'
-#' This function reads and formats the data in the following way. If \code{df}
-#' is provided, failure times and censoring indicadors are assumed to be columns
-#' named 't1', 't2', 'delta1', and 'delta2'. Other columns not named 'id'
-#' (ignoring case) are taken to be predictors. If \code{df} has no columns
-#' 'delta1' or 'delta2', observations are taken as exact.
+#' This function reads and formats censored bivariate survival data in the
+#' following way. If \code{df} is provided, failure times and censoring
+#' indicadors are assumed to be columns named 't1', 't2', 'delta1', and
+#' 'delta2'. Other columns not named 'id' (ignoring case) are taken to be
+#' predictors. If \code{df} has no columns 'delta1' or 'delta2', observations
+#' are taken as exact.
 #'
 #' If \code{df} is not provided, then \code{t1} and \code{t2} are expected to be
 #' objects of class 'Surv' created by \code{\link[survival]{Surv}} and the model
@@ -152,8 +153,10 @@ BSBInit <- function(df = NULL,
   omega2 <- stats::rgamma(n = n_obs, shape = 2, rate = 1)
   theta <- stats::rnorm(n = ncol(pred_matrix))
   n_intervals <- length(t_part) - 1
-  lambda1 <- stats::rgamma(n = n_intervals, shape = 2, rate = 1)
-  lambda2 <- stats::rgamma(n = n_intervals, shape = 2, rate = 1)
+  lambda1 <- stats::rgamma(n = n_intervals, shape = alpha, rate = beta)
+  lambda2 <- stats::rgamma(n = n_intervals, shape = alpha, rate = beta)
+  lambda1 <- pmax(lambda1, rep(1e-5, times = n_intervals))
+  lambda2 <- pmax(lambda2, rep(1e-5, times = n_intervals))
   u1 <- stats::rpois(n = n_intervals, lambda = lambda1)
   u2 <- stats::rpois(n = n_intervals, lambda = lambda2)
   

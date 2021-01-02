@@ -42,6 +42,8 @@ prob_u <- function(l, l1, alpha, beta, c, index) {
 
   u <- u[1:j] / acum
   prob_fun <- cumsum(u)
+  
+  return(prob_fun)
 
 }
 
@@ -66,5 +68,7 @@ sample_u <- function(l, l1, alpha, beta, c, index_indicator) {
   }
 
   y <- index - 1
-
+  
+  return(y)
+  
 }

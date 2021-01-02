@@ -1,8 +1,8 @@
 #' Plot summaries for BSBHaz model
 #'
 #' @param bsbhaz An object of class 'BSBHaz' created by
-#'   \code{\link{BSBSam}}.
-#' @param variable A character indicating which variable to get the plot from.
+#'   \code{\link{BSBHaz}}.
+#' @param variable A character indicating the variable to plot.
 #'
 #' @export
 #'
@@ -11,7 +11,7 @@
 #' t2 <- survival::Surv(c(1, 2, 3))
 #'
 #' init <- BSBInit(t1 = t1, t2 = t2, seed = 0)
-#' samples <- BSBSam(init, iter = 10, omega_d = 2,
+#' samples <- BSBHaz(init, iter = 10, omega_d = 2,
 #' gamma_d = 10, seed = 10)
 #'
 #' BSBPlotSumm(samples, "s1")

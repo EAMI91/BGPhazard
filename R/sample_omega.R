@@ -20,5 +20,7 @@ sample_omega <- function(omega, y, cum_h, x, theta, gamma, omega_d = NULL) {
   prob <- min(exp(log_alpha), 1)
   u <- stats::runif(n = 1)
   omega_out <- omega + (proposal - omega) * (u <= prob)
+  
+  return(omega_out)
 
 }
