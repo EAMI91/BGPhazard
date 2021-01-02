@@ -4,8 +4,16 @@
 \alias{BSBInit}
 \title{Initial setup for BSBHaz model}
 \usage{
-BSBInit(df = NULL, t1 = NULL, t2 = NULL, alpha = 0.001,
-  beta = 0.001, c = 1000, part_len = 1, seed = 42)
+BSBInit(
+  df = NULL,
+  t1 = NULL,
+  t2 = NULL,
+  alpha = 0.001,
+  beta = 0.001,
+  c = 1000,
+  part_len = 1,
+  seed = 42
+)
 }
 \arguments{
 \item{df}{A data frame with columns 't1', 't2', 'delta1', 'delta2'. Any other

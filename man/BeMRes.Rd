@@ -4,10 +4,21 @@
 \alias{BeMRes}
 \title{Markov Beta Model}
 \usage{
-BeMRes(times, delta = rep(1, length(times)), alpha = rep(1e-04, K),
-  beta = rep(1e-04, K), c.r = rep(0, K - 1), a.eps = 0.1,
-  b.eps = 0.1, type.c = 4, epsilon = 1, iterations = 2000,
-  burn.in = floor(iterations * 0.2), thinning = 5, printtime = TRUE)
+BeMRes(
+  times,
+  delta = rep(1, length(times)),
+  alpha = rep(1e-04, K),
+  beta = rep(1e-04, K),
+  c.r = rep(0, K - 1),
+  a.eps = 0.1,
+  b.eps = 0.1,
+  type.c = 4,
+  epsilon = 1,
+  iterations = 2000,
+  burn.in = floor(iterations * 0.2),
+  thinning = 5,
+  printtime = TRUE
+)
 }
 \arguments{
 \item{times}{Numeric positive vector. Failure times.}

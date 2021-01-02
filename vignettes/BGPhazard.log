@@ -1,53 +1,52 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020) (preloaded format=pdflatex 2020.6.4)  4 JUN 2020 11:41
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020) (preloaded format=pdflatex 2021.1.2)  2 JAN 2021 12:12
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
 **BGPhazard.tex
 (./BGPhazard.tex
-LaTeX2e <2020-02-02> patch level 5
-L3 programming layer <2020-06-03>
-(/Users/EmilioM/Library/TinyTeX/texmf-dist/tex/latex/base/article.cls
-Document Class: article 2019/12/20 v1.4l Standard LaTeX document class
-(/Users/EmilioM/Library/TinyTeX/texmf-dist/tex/latex/base/size10.clo
-File: size10.clo 2019/12/20 v1.4l Standard LaTeX file (size option)
+LaTeX2e <2020-10-01> patch level 3
+L3 programming layer <2020-12-07> xparse <2020-03-03>
+(/Users/emiliomorones/Library/TinyTeX/texmf-dist/tex/latex/base/article.cls
+Document Class: article 2020/04/10 v1.4m Standard LaTeX document class
+(/Users/emiliomorones/Library/TinyTeX/texmf-dist/tex/latex/base/size10.clo
+File: size10.clo 2020/04/10 v1.4m Standard LaTeX file (size option)
 )
-\c@part=\count167
-\c@section=\count168
-\c@subsection=\count169
-\c@subsubsection=\count170
-\c@paragraph=\count171
-\c@subparagraph=\count172
-\c@figure=\count173
-\c@table=\count174
+\c@part=\count177
+\c@section=\count178
+\c@subsection=\count179
+\c@subsubsection=\count180
+\c@paragraph=\count181
+\c@subparagraph=\count182
+\c@figure=\count183
+\c@table=\count184
 \abovecaptionskip=\skip47
 \belowcaptionskip=\skip48
-\bibindent=\dimen134
+\bibindent=\dimen138
 )
 (/Library/Frameworks/R.framework/Resources/share/texmf/tex/latex/Rd.sty
 Package: Rd 
 
-(/Users/EmilioM/Library/TinyTeX/texmf-dist/tex/latex/base/ifthen.sty
+(/Users/emiliomorones/Library/TinyTeX/texmf-dist/tex/latex/base/ifthen.sty
 Package: ifthen 2014/09/29 v1.1c Standard LaTeX ifthen package (DPC)
 )
-(/Users/EmilioM/Library/TinyTeX/texmf-dist/tex/latex/tools/longtable.sty
+(/Users/emiliomorones/Library/TinyTeX/texmf-dist/tex/latex/tools/longtable.sty
 Package: longtable 2020/01/07 v4.13 Multi-page Table package (DPC)
 \LTleft=\skip49
 \LTright=\skip50
 \LTpre=\skip51
 \LTpost=\skip52
-\LTchunksize=\count175
-\LTcapwidth=\dimen135
-\LT@head=\box45
-\LT@firsthead=\box46
-\LT@foot=\box47
-\LT@lastfoot=\box48
-\LT@cols=\count176
-\LT@rows=\count177
-\c@LT@tables=\count178
-\c@LT@chunks=\count179
+\LTchunksize=\count185
+\LTcapwidth=\dimen139
+\LT@head=\box47
+\LT@firsthead=\box48
+\LT@foot=\box49
+\LT@lastfoot=\box50
+\LT@cols=\count186
+\LT@rows=\count187
+\c@LT@tables=\count188
+\c@LT@chunks=\count189
 \LT@p@ftn=\toks15
-)
-(/Users/EmilioM/Library/TinyTeX/texmf-dist/tex/latex/tools/bm.sty
+) (/Users/emiliomorones/Library/TinyTeX/texmf-dist/tex/latex/tools/bm.sty
 Package: bm 2019/07/24 v1.2d Bold Symbol Support (DPC/FMi)
 \symboldoperators=\mathgroup4
 \symboldletters=\mathgroup5
@@ -55,656 +54,45 @@ Package: bm 2019/07/24 v1.2d Bold Symbol Support (DPC/FMi)
 LaTeX Font Info:    Redeclaring math alphabet \mathbf on input line 141.
 LaTeX Info: Redefining \bm on input line 209.
 )
-(/Users/EmilioM/Library/TinyTeX/texmf-dist/tex/latex/base/alltt.sty
+(/Users/emiliomorones/Library/TinyTeX/texmf-dist/tex/latex/base/alltt.sty
 Package: alltt 1997/06/16 v2.0g defines alltt environment
 )
-(/Users/EmilioM/Library/TinyTeX/texmf-dist/tex/latex/tools/verbatim.sty
-Package: verbatim 2019/11/10 v1.5r LaTeX2e package for verbatim enhancements
+(/Users/emiliomorones/Library/TinyTeX/texmf-dist/tex/latex/tools/verbatim.sty
+Package: verbatim 2020-07-07 v1.5u LaTeX2e package for verbatim enhancements
 \every@verbatim=\toks16
 \verbatim@line=\toks17
 \verbatim@in@stream=\read2
 )
-(/Users/EmilioM/Library/TinyTeX/texmf-dist/tex/latex/url/url.sty
+(/Users/emiliomorones/Library/TinyTeX/texmf-dist/tex/latex/url/url.sty
 \Urlmuskip=\muskip16
 Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
 )
-(/Users/EmilioM/Library/TinyTeX/texmf-dist/tex/latex/base/textcomp.sty
+(/Users/emiliomorones/Library/TinyTeX/texmf-dist/tex/latex/base/textcomp.sty
 Package: textcomp 2020/02/02 v2.0n Standard LaTeX package
 )
 \ldescriptionwidth=\skip53
 )
-(/Users/EmilioM/Library/TinyTeX/texmf-dist/tex/latex/caption/caption.sty
-Package: caption 2020/05/10 v3.4j Customizing captions (AR)
 
-(/Users/EmilioM/Library/TinyTeX/texmf-dist/tex/latex/caption/caption3.sty
-Package: caption3 2020/05/10 v1.11 caption3 kernel (AR)
-Package caption3 Info: TeX engine: e-TeX on input line 61.
+! LaTeX Error: File `caption.sty' not found.
 
-(/Users/EmilioM/Library/TinyTeX/texmf-dist/tex/latex/graphics/keyval.sty
-Package: keyval 2014/10/28 v1.15 key=value parser (DPC)
-\KV@toks@=\toks18
-)
-\captionmargin=\dimen136
-\captionmargin@=\dimen137
-\captionwidth=\dimen138
-\caption@tempdima=\dimen139
-\caption@indent=\dimen140
-\caption@parindent=\dimen141
-\caption@hangindent=\dimen142
-Package caption Info: Standard document class detected.
-)
-\c@caption@flags=\count180
-\c@continuedfloat=\count181
-Package caption Info: longtable package is loaded.
+Type X to quit or <RETURN> to proceed,
+or enter new name. (Default extension: sty)
 
-(/Users/EmilioM/Library/TinyTeX/texmf-dist/tex/latex/caption/ltcaption.sty
-Package: ltcaption 2018/08/26 v1.4a longtable captions (AR)
-))
-(/Users/EmilioM/Library/TinyTeX/texmf-dist/tex/latex/caption/subcaption.sty
-Package: subcaption 2020/01/22 v1.3d Sub-captions (AR)
-\c@subfigure=\count182
-\c@subtable=\count183
-)
-(/Users/EmilioM/Library/TinyTeX/texmf-dist/tex/latex/amsmath/amsmath.sty
-Package: amsmath 2020/01/20 v2.17e AMS math features
-\@mathmargin=\skip54
+Enter file name: 
+! Emergency stop.
+<read *> 
+         
+l.8 \usepackage
+               {subcaption}^^M
+*** (cannot \read from terminal in nonstop modes)
 
-For additional information on amsmath, use the `?' option.
-(/Users/EmilioM/Library/TinyTeX/texmf-dist/tex/latex/amsmath/amstext.sty
-Package: amstext 2000/06/29 v2.01 AMS text
-
-(/Users/EmilioM/Library/TinyTeX/texmf-dist/tex/latex/amsmath/amsgen.sty
-File: amsgen.sty 1999/11/30 v2.0 generic functions
-\@emptytoks=\toks19
-\ex@=\dimen143
-))
-(/Users/EmilioM/Library/TinyTeX/texmf-dist/tex/latex/amsmath/amsbsy.sty
-Package: amsbsy 1999/11/29 v1.2d Bold Symbols
-LaTeX Info: Redefining \boldsymbol on input line 28.
-\pmbraise@=\dimen144
-)
-(/Users/EmilioM/Library/TinyTeX/texmf-dist/tex/latex/amsmath/amsopn.sty
-Package: amsopn 2016/03/08 v2.02 operator names
-)
-\inf@bad=\count184
-LaTeX Info: Redefining \frac on input line 227.
-\uproot@=\count185
-\leftroot@=\count186
-LaTeX Info: Redefining \overline on input line 389.
-\classnum@=\count187
-\DOTSCASE@=\count188
-LaTeX Info: Redefining \ldots on input line 486.
-LaTeX Info: Redefining \dots on input line 489.
-LaTeX Info: Redefining \cdots on input line 610.
-\Mathstrutbox@=\box49
-\strutbox@=\box50
-\big@size=\dimen145
-LaTeX Font Info:    Redeclaring font encoding OML on input line 733.
-LaTeX Font Info:    Redeclaring font encoding OMS on input line 734.
-\macc@depth=\count189
-\c@MaxMatrixCols=\count190
-\dotsspace@=\muskip17
-\c@parentequation=\count191
-\dspbrk@lvl=\count192
-\tag@help=\toks20
-\row@=\count193
-\column@=\count194
-\maxfields@=\count195
-\andhelp@=\toks21
-\eqnshift@=\dimen146
-\alignsep@=\dimen147
-\tagshift@=\dimen148
-\tagwidth@=\dimen149
-\totwidth@=\dimen150
-\lineht@=\dimen151
-\@envbody=\toks22
-\multlinegap=\skip55
-\multlinetaggap=\skip56
-\mathdisplay@stack=\toks23
-LaTeX Info: Redefining \[ on input line 2859.
-LaTeX Info: Redefining \] on input line 2860.
-)
-(/Users/EmilioM/Library/TinyTeX/texmf-dist/tex/latex/hyperref/hyperref.sty
-Package: hyperref 2020-05-15 v7.00e Hypertext links for LaTeX
-
-(/Users/EmilioM/Library/TinyTeX/texmf-dist/tex/generic/ltxcmds/ltxcmds.sty
-Package: ltxcmds 2019/12/15 v1.24 LaTeX kernel commands for general use (HO)
-)
-(/Users/EmilioM/Library/TinyTeX/texmf-dist/tex/generic/iftex/iftex.sty
-Package: iftex 2020/03/06 v1.0d TeX engine tests
-)
-(/Users/EmilioM/Library/TinyTeX/texmf-dist/tex/latex/pdftexcmds/pdftexcmds.sty
-Package: pdftexcmds 2019/11/24 v0.31 Utility functions of pdfTeX for LuaTeX (HO
-)
-
-(/Users/EmilioM/Library/TinyTeX/texmf-dist/tex/generic/infwarerr/infwarerr.sty
-Package: infwarerr 2019/12/03 v1.5 Providing info/warning/error messages (HO)
-)
-Package pdftexcmds Info: \pdf@primitive is available.
-Package pdftexcmds Info: \pdf@ifprimitive is available.
-Package pdftexcmds Info: \pdfdraftmode found.
-)
-(/Users/EmilioM/Library/TinyTeX/texmf-dist/tex/generic/kvsetkeys/kvsetkeys.sty
-Package: kvsetkeys 2019/12/15 v1.18 Key value parser (HO)
-)
-(/Users/EmilioM/Library/TinyTeX/texmf-dist/tex/generic/kvdefinekeys/kvdefinekey
-s.sty
-Package: kvdefinekeys 2019-12-19 v1.6 Define keys (HO)
-)
-(/Users/EmilioM/Library/TinyTeX/texmf-dist/tex/generic/pdfescape/pdfescape.sty
-Package: pdfescape 2019/12/09 v1.15 Implements pdfTeX's escape features (HO)
-) (/Users/EmilioM/Library/TinyTeX/texmf-dist/tex/latex/hycolor/hycolor.sty
-Package: hycolor 2020-01-27 v1.10 Color options for hyperref/bookmark (HO)
-)
-(/Users/EmilioM/Library/TinyTeX/texmf-dist/tex/latex/letltxmacro/letltxmacro.st
-y
-Package: letltxmacro 2019/12/03 v1.6 Let assignment for LaTeX macros (HO)
-) (/Users/EmilioM/Library/TinyTeX/texmf-dist/tex/latex/auxhook/auxhook.sty
-Package: auxhook 2019-12-17 v1.6 Hooks for auxiliary files (HO)
-)
-(/Users/EmilioM/Library/TinyTeX/texmf-dist/tex/latex/kvoptions/kvoptions.sty
-Package: kvoptions 2019/11/29 v3.13 Key value format for package options (HO)
-)
-\@linkdim=\dimen152
-\Hy@linkcounter=\count196
-\Hy@pagecounter=\count197
-
-(/Users/EmilioM/Library/TinyTeX/texmf-dist/tex/latex/hyperref/pd1enc.def
-File: pd1enc.def 2020-05-15 v7.00e Hyperref: PDFDocEncoding definition (HO)
-Now handling font encoding PD1 ...
-... no UTF-8 mapping file for font encoding PD1
-)
-(/Users/EmilioM/Library/TinyTeX/texmf-dist/tex/generic/intcalc/intcalc.sty
-Package: intcalc 2019/12/15 v1.3 Expandable calculations with integers (HO)
-)
-(/Users/EmilioM/Library/TinyTeX/texmf-dist/tex/generic/etexcmds/etexcmds.sty
-Package: etexcmds 2019/12/15 v1.7 Avoid name clashes with e-TeX commands (HO)
-)
-\Hy@SavedSpaceFactor=\count198
-Package hyperref Info: Hyper figures OFF on input line 4464.
-Package hyperref Info: Link nesting OFF on input line 4469.
-Package hyperref Info: Hyper index ON on input line 4472.
-Package hyperref Info: Plain pages OFF on input line 4479.
-Package hyperref Info: Backreferencing OFF on input line 4484.
-Package hyperref Info: Implicit mode ON; LaTeX internals redefined.
-Package hyperref Info: Bookmarks ON on input line 4717.
-\c@Hy@tempcnt=\count199
-LaTeX Info: Redefining \url on input line 5076.
-\XeTeXLinkMargin=\dimen153
-
-(/Users/EmilioM/Library/TinyTeX/texmf-dist/tex/generic/bitset/bitset.sty
-Package: bitset 2019/12/09 v1.3 Handle bit-vector datatype (HO)
-
-(/Users/EmilioM/Library/TinyTeX/texmf-dist/tex/generic/bigintcalc/bigintcalc.st
-y
-Package: bigintcalc 2019/12/15 v1.5 Expandable calculations on big integers (HO
-)
-))
-\Fld@menulength=\count266
-\Field@Width=\dimen154
-\Fld@charsize=\dimen155
-Package hyperref Info: Hyper figures OFF on input line 6347.
-Package hyperref Info: Link nesting OFF on input line 6352.
-Package hyperref Info: Hyper index ON on input line 6355.
-Package hyperref Info: backreferencing OFF on input line 6362.
-Package hyperref Info: Link coloring OFF on input line 6367.
-Package hyperref Info: Link coloring with OCG OFF on input line 6372.
-Package hyperref Info: PDF/A mode OFF on input line 6377.
-LaTeX Info: Redefining \ref on input line 6417.
-LaTeX Info: Redefining \pageref on input line 6421.
-
-(/Users/EmilioM/Library/TinyTeX/texmf-dist/tex/generic/atbegshi/atbegshi.sty
-Package: atbegshi 2019/12/05 v1.19 At begin shipout hook (HO)
-)
-\Hy@abspage=\count267
-\c@Item=\count268
-\c@Hfootnote=\count269
-)
-Package hyperref Info: Driver (autodetected): hpdftex.
-
-(/Users/EmilioM/Library/TinyTeX/texmf-dist/tex/latex/hyperref/hpdftex.def
-File: hpdftex.def 2020-05-15 v7.00e Hyperref driver for pdfTeX
-
-(/Users/EmilioM/Library/TinyTeX/texmf-dist/tex/latex/atveryend/atveryend.sty
-Package: atveryend 2019-12-11 v1.11 Hooks at the very end of document (HO)
-Package atveryend Info: \enddocument detected (standard20110627).
-)
-\Fld@listcount=\count270
-\c@bookmark@seq@number=\count271
-
-(/Users/EmilioM/Library/TinyTeX/texmf-dist/tex/latex/rerunfilecheck/rerunfilech
-eck.sty
-Package: rerunfilecheck 2019/12/05 v1.9 Rerun checks for auxiliary files (HO)
-
-(/Users/EmilioM/Library/TinyTeX/texmf-dist/tex/generic/uniquecounter/uniquecoun
-ter.sty
-Package: uniquecounter 2019/12/15 v1.4 Provide unlimited unique counter (HO)
-)
-Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 2
-86.
-)
-\Hy@SectionHShift=\skip57
-)
-(/Library/Frameworks/R.framework/Resources/share/texmf/tex/latex/Sweave.sty
-Package: Sweave 
-
-(/Users/EmilioM/Library/TinyTeX/texmf-dist/tex/latex/graphics/graphicx.sty
-Package: graphicx 2019/11/30 v1.2a Enhanced LaTeX Graphics (DPC,SPQR)
-
-(/Users/EmilioM/Library/TinyTeX/texmf-dist/tex/latex/graphics/graphics.sty
-Package: graphics 2019/11/30 v1.4a Standard LaTeX Graphics (DPC,SPQR)
-
-(/Users/EmilioM/Library/TinyTeX/texmf-dist/tex/latex/graphics/trig.sty
-Package: trig 2016/01/03 v1.10 sin cos tan (DPC)
-)
-(/Users/EmilioM/Library/TinyTeX/texmf-dist/tex/latex/graphics-cfg/graphics.cfg
-File: graphics.cfg 2016/06/04 v1.11 sample graphics configuration
-)
-Package graphics Info: Driver file: pdftex.def on input line 105.
-(/Users/EmilioM/Library/TinyTeX/texmf-dist/tex/latex/graphics-def/pdftex.def
-File: pdftex.def 2018/01/08 v1.0l Graphics/color driver for pdftex
-))
-\Gin@req@height=\dimen156
-\Gin@req@width=\dimen157
-) (/Users/EmilioM/Library/TinyTeX/texmf-dist/tex/latex/fancyvrb/fancyvrb.sty
-Package: fancyvrb 2020/05/03 v3.6 verbatim text (tvz,hv)
-\FV@CodeLineNo=\count272
-\FV@InFile=\read3
-\FV@TabBox=\box51
-\c@FancyVerbLine=\count273
-\FV@StepNumber=\count274
-\FV@OutFile=\write3
-)
-(/Users/EmilioM/Library/TinyTeX/texmf-dist/tex/latex/base/fontenc.sty
-Package: fontenc 2020/02/11 v2.0o Standard LaTeX package
-)
-(/Users/EmilioM/Library/TinyTeX/texmf-dist/tex/latex/ae/ae.sty
-Package: ae 2001/02/12 1.3 Almost European Computer Modern
-
-(/Users/EmilioM/Library/TinyTeX/texmf-dist/tex/latex/base/fontenc.sty
-Package: fontenc 2020/02/11 v2.0o Standard LaTeX package
-)))
-(/Users/EmilioM/Library/TinyTeX/texmf-dist/tex/latex/l3backend/l3backend-pdfmod
-e.def
-File: l3backend-pdfmode.def 2020-06-03 L3 backend support: PDF mode
-\l__kernel_color_stack_int=\count275
-\l__pdf_internal_box=\box52
-) (./BGPhazard.aux)
-\openout1 = `BGPhazard.aux'.
-
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 15.
-LaTeX Font Info:    ... okay on input line 15.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 15.
-LaTeX Font Info:    ... okay on input line 15.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 15.
-LaTeX Font Info:    ... okay on input line 15.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 15.
-LaTeX Font Info:    ... okay on input line 15.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 15.
-LaTeX Font Info:    ... okay on input line 15.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 15.
-LaTeX Font Info:    ... okay on input line 15.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 15.
-LaTeX Font Info:    ... okay on input line 15.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 15.
-LaTeX Font Info:    ... okay on input line 15.
-LaTeX Font Info:    Trying to load font information for T1+aer on input line 15
-.
-
-(/Users/EmilioM/Library/TinyTeX/texmf-dist/tex/latex/ae/t1aer.fd
-File: t1aer.fd 1997/11/16 Font definitions for T1/aer.
-)
-Package caption Info: Begin \AtBeginDocument code.
-Package caption Info: hyperref package is loaded.
-Package caption Info: End \AtBeginDocument code.
-\AtBeginShipoutBox=\box53
-Package hyperref Info: Link coloring OFF on input line 15.
-
-(/Users/EmilioM/Library/TinyTeX/texmf-dist/tex/latex/hyperref/nameref.sty
-Package: nameref 2019/09/16 v2.46 Cross-referencing by name of section
-
-(/Users/EmilioM/Library/TinyTeX/texmf-dist/tex/latex/refcount/refcount.sty
-Package: refcount 2019/12/15 v3.6 Data extraction from label references (HO)
-)
-(/Users/EmilioM/Library/TinyTeX/texmf-dist/tex/generic/gettitlestring/gettitles
-tring.sty
-Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
-)
-\c@section@level=\count276
-)
-LaTeX Info: Redefining \ref on input line 15.
-LaTeX Info: Redefining \pageref on input line 15.
-LaTeX Info: Redefining \nameref on input line 15.
- (./BGPhazard.out) (./BGPhazard.out)
-\@outlinefile=\write4
-\openout4 = `BGPhazard.out'.
-
-
-(/Users/EmilioM/Library/TinyTeX/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base
-.sty
-Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
-Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
-85.
-
-(/Users/EmilioM/Library/TinyTeX/texmf-dist/tex/latex/latexconfig/epstopdf-sys.c
-fg
-File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
-e
-)) (./BGPhazard-concordance.tex)
-LaTeX Font Info:    Trying to load font information for T1+aett on input line 2
-0.
-
-(/Users/EmilioM/Library/TinyTeX/texmf-dist/tex/latex/ae/t1aett.fd
-File: t1aett.fd 1997/11/16 Font definitions for T1/aett.
-)
-(./BGPhazard.toc)
-\tf@toc=\write5
-\openout5 = `BGPhazard.toc'.
-
- [1
-
-{/Users/EmilioM/Library/TinyTeX/texmf-var/fonts/map/pdftex/updmap/pdftex.map}] 
-[2] [3] [4] [5]
-LaTeX Font Info:    Trying to load font information for TS1+aer on input line 2
-10.
-
-(/Library/Frameworks/R.framework/Resources/share/texmf/tex/latex/ts1aer.fd
-File: ts1aer.fd 
-)
-LaTeX Font Info:    Font shape `TS1/aer/m/n' in size <10> not available
-(Font)              Font shape `TS1/cmr/m/n' tried instead on input line 210.
-
-[6]
-<G11.png, id=156, 597.23125pt x 380.42125pt>
-File: G11.png Graphic file (type png)
-<use G11.png>
-Package pdftex.def Info: G11.png  used on input line 260.
-(pdftex.def)             Requested size: 413.2866pt x 263.25716pt.
-<G12.png, id=157, 597.23125pt x 380.42125pt>
-File: G12.png Graphic file (type png)
-<use G12.png>
-Package pdftex.def Info: G12.png  used on input line 264.
-(pdftex.def)             Requested size: 413.2866pt x 263.25716pt.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `math shift' on input line 271.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `math shift' on input line 271.
-
-<G21.png, id=161, 597.23125pt x 380.42125pt>
-File: G21.png Graphic file (type png)
-<use G21.png>
-Package pdftex.def Info: G21.png  used on input line 285.
-(pdftex.def)             Requested size: 413.2866pt x 263.25716pt.
-<G22.png, id=162, 597.23125pt x 380.42125pt>
-File: G22.png Graphic file (type png)
-<use G22.png>
-Package pdftex.def Info: G22.png  used on input line 289.
-(pdftex.def)             Requested size: 413.2866pt x 263.25716pt.
-
-LaTeX Warning: Float too large for page by 11.37102pt on input line 294.
-
-<G23.png, id=164, 957.5775pt x 485.815pt>
-File: G23.png Graphic file (type png)
-<use G23.png>
-Package pdftex.def Info: G23.png  used on input line 306.
-(pdftex.def)             Requested size: 413.2866pt x 209.67473pt.
-
-Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `math shift' on input line 311.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `math shift' on input line 311.
-
-[7] [8 <./G11.png> <./G12.png>] [9 <./G21.png> <./G22.png>]
-<G31.png, id=191, 597.23125pt x 380.42125pt>
-File: G31.png Graphic file (type png)
-<use G31.png>
-Package pdftex.def Info: G31.png  used on input line 328.
-(pdftex.def)             Requested size: 413.2866pt x 263.25716pt.
-<G32.png, id=192, 597.23125pt x 380.42125pt>
-File: G32.png Graphic file (type png)
-<use G32.png>
-Package pdftex.def Info: G32.png  used on input line 332.
-(pdftex.def)             Requested size: 413.2866pt x 263.25716pt.
-
-
-LaTeX Warning: Float too large for page by 11.37102pt on input line 337.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `math shift' on input line 339.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `math shift' on input line 339.
-
-<G41.png, id=194, 597.23125pt x 380.42125pt>
-File: G41.png Graphic file (type png)
-<use G41.png>
-Package pdftex.def Info: G41.png  used on input line 354.
-(pdftex.def)             Requested size: 413.2866pt x 263.25716pt.
-<G42.png, id=195, 597.23125pt x 380.42125pt>
-File: G42.png Graphic file (type png)
-<use G42.png>
-Package pdftex.def Info: G42.png  used on input line 358.
-(pdftex.def)             Requested size: 413.2866pt x 263.25716pt.
-
-Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `math shift' on input line 365.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `math shift' on input line 365.
-
-[10 <./G23.png>] [11 <./G31.png> <./G32.png>] [12 <./G41.png> <./G42.png>]
-<G51.png, id=217, 597.23125pt x 380.42125pt>
-File: G51.png Graphic file (type png)
-<use G51.png>
-Package pdftex.def Info: G51.png  used on input line 380.
-(pdftex.def)             Requested size: 413.2866pt x 263.25716pt.
-<G52.png, id=218, 597.23125pt x 380.42125pt>
-File: G52.png Graphic file (type png)
-<use G52.png>
-Package pdftex.def Info: G52.png  used on input line 384.
-(pdftex.def)             Requested size: 413.2866pt x 263.25716pt.
-
-
-LaTeX Warning: Float too large for page by 11.37102pt on input line 389.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `math shift' on input line 391.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `math shift' on input line 391.
-
-<G61.png, id=221, 597.23125pt x 380.42125pt>
-File: G61.png Graphic file (type png)
-<use G61.png>
-Package pdftex.def Info: G61.png  used on input line 406.
-(pdftex.def)             Requested size: 413.2866pt x 263.25716pt.
-<G62.png, id=222, 597.23125pt x 380.42125pt>
-File: G62.png Graphic file (type png)
-<use G62.png>
-Package pdftex.def Info: G62.png  used on input line 410.
-(pdftex.def)             Requested size: 413.2866pt x 263.25716pt.
-
-LaTeX Warning: Float too large for page by 11.37102pt on input line 415.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `math shift' on input line 417.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `math shift' on input line 417.
-
-<G71.png, id=225, 597.23125pt x 380.42125pt>
-File: G71.png Graphic file (type png)
-<use G71.png>
-Package pdftex.def Info: G71.png  used on input line 432.
-(pdftex.def)             Requested size: 413.2866pt x 263.25716pt.
-<G72.png, id=226, 597.23125pt x 380.42125pt>
-File: G72.png Graphic file (type png)
-<use G72.png>
-Package pdftex.def Info: G72.png  used on input line 436.
-(pdftex.def)             Requested size: 413.2866pt x 263.25716pt.
-<B11.png, id=228, 597.23125pt x 380.42125pt>
-File: B11.png Graphic file (type png)
-<use B11.png>
-Package pdftex.def Info: B11.png  used on input line 470.
-(pdftex.def)             Requested size: 413.2866pt x 263.25716pt.
-<B12.png, id=229, 597.23125pt x 380.42125pt>
-File: B12.png Graphic file (type png)
-<use B12.png>
-Package pdftex.def Info: B12.png  used on input line 474.
-(pdftex.def)             Requested size: 413.2866pt x 263.25716pt.
-[13] [14 <./G51.png> <./G52.png>] [15 <./G61.png> <./G62.png>] [16 <./G71.png> 
-<./G72.png>]
-
-Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `math shift' on input line 481.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `math shift' on input line 481.
-
-<B21.png, id=255, 597.23125pt x 380.42125pt>
-File: B21.png Graphic file (type png)
-<use B21.png>
-Package pdftex.def Info: B21.png  used on input line 496.
-(pdftex.def)             Requested size: 413.2866pt x 263.25716pt.
-<B22.png, id=256, 597.23125pt x 380.42125pt>
-File: B22.png Graphic file (type png)
-<use B22.png>
-Package pdftex.def Info: B22.png  used on input line 500.
-(pdftex.def)             Requested size: 413.2866pt x 263.25716pt.
-<B23.png, id=258, 957.5775pt x 485.815pt>
-File: B23.png Graphic file (type png)
-<use B23.png>
-Package pdftex.def Info: B23.png  used on input line 517.
-(pdftex.def)             Requested size: 413.2866pt x 209.67473pt.
-
-Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `math shift' on input line 522.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `math shift' on input line 522.
-
-<B31.png, id=260, 597.23125pt x 380.42125pt>
-File: B31.png Graphic file (type png)
-<use B31.png>
-Package pdftex.def Info: B31.png  used on input line 536.
-(pdftex.def)             Requested size: 413.2866pt x 263.25716pt.
-<B32.png, id=261, 597.23125pt x 380.42125pt>
-File: B32.png Graphic file (type png)
-<use B32.png>
-Package pdftex.def Info: B32.png  used on input line 540.
-(pdftex.def)             Requested size: 413.2866pt x 263.25716pt.
-
-Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `math shift' on input line 547.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `math shift' on input line 547.
-
-<B41.png, id=263, 597.23125pt x 380.42125pt>
-File: B41.png Graphic file (type png)
-<use B41.png>
-Package pdftex.def Info: B41.png  used on input line 561.
-(pdftex.def)             Requested size: 413.2866pt x 263.25716pt.
-<B42.png, id=264, 597.23125pt x 380.42125pt>
-File: B42.png Graphic file (type png)
-<use B42.png>
-Package pdftex.def Info: B42.png  used on input line 565.
-(pdftex.def)             Requested size: 413.2866pt x 263.25716pt.
-[17] [18 <./B11.png> <./B12.png>] [19 <./B21.png> <./B22.png>] [20 <./B23.png>]
-[21 <./B31.png> <./B32.png>] [22 <./B41.png> <./B42.png>] [23
-
-]
-<CG1.png, id=313, 597.23125pt x 380.42125pt>
-File: CG1.png Graphic file (type png)
-<use CG1.png>
-Package pdftex.def Info: CG1.png  used on input line 642.
-(pdftex.def)             Requested size: 413.2866pt x 263.25716pt.
-<CG2.png, id=314, 597.23125pt x 380.42125pt>
-File: CG2.png Graphic file (type png)
-<use CG2.png>
-Package pdftex.def Info: CG2.png  used on input line 646.
-(pdftex.def)             Requested size: 413.2866pt x 263.25716pt.
-<CG3.png, id=315, 597.23125pt x 380.42125pt>
-File: CG3.png Graphic file (type png)
-<use CG3.png>
-Package pdftex.def Info: CG3.png  used on input line 656.
-(pdftex.def)             Requested size: 413.2866pt x 263.25716pt.
-<CG4.png, id=316, 597.23125pt x 380.42125pt>
-File: CG4.png Graphic file (type png)
-<use CG4.png>
-Package pdftex.def Info: CG4.png  used on input line 660.
-(pdftex.def)             Requested size: 413.2866pt x 263.25716pt.
-<CG5.png, id=317, 597.23125pt x 380.42125pt>
-File: CG5.png Graphic file (type png)
-<use CG5.png>
-Package pdftex.def Info: CG5.png  used on input line 670.
-(pdftex.def)             Requested size: 413.2866pt x 263.25716pt.
- [24] [25 <./CG1.png> <./CG2.png>] [26 <./CG3.png> <./CG4.png>] [27 <./CG5.png>
-]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 693.
- [28]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 693.
-
-(./BGPhazard.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 693.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 693.
-Package rerunfilecheck Info: File `BGPhazard.out' has not changed.
-(rerunfilecheck)             Checksum: D8CA690DCE46B8BAEF5632306711025C;1862.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 693.
- ) 
+ 
 Here is how much of TeX's memory you used:
- 8184 strings out of 482385
- 125886 string characters out of 5945235
- 383419 words of memory out of 5000000
- 23668 multiletter control sequences out of 15000+600000
- 569613 words of font info for 105 fonts, out of 8000000 for 9000
+ 745 strings out of 481258
+ 9260 string characters out of 5914854
+ 275251 words of memory out of 5000000
+ 17742 multiletter control sequences out of 15000+600000
+ 403430 words of font info for 27 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 38i,10n,43p,836b,503s stack positions out of 5000i,500n,10000p,200000b,80000s
-{/Users/EmilioM/Library/TinyTeX/texmf-dist/fonts/enc/dvips/cm-super/cm-super-
-ts1.enc}</Users/EmilioM/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/
-cm/cmb10.pfb></Users/EmilioM/Library/TinyTeX/texmf-dist/fonts/type1/public/amsf
-onts/cm/cmcsc10.pfb></Users/EmilioM/Library/TinyTeX/texmf-dist/fonts/type1/publ
-ic/amsfonts/cm/cmex10.pfb></Users/EmilioM/Library/TinyTeX/texmf-dist/fonts/type
-1/public/amsfonts/cm/cmmi10.pfb></Users/EmilioM/Library/TinyTeX/texmf-dist/font
-s/type1/public/amsfonts/cm/cmmi5.pfb></Users/EmilioM/Library/TinyTeX/texmf-dist
-/fonts/type1/public/amsfonts/cm/cmmi7.pfb></Users/EmilioM/Library/TinyTeX/texmf
--dist/fonts/type1/public/amsfonts/cm/cmmi9.pfb></Users/EmilioM/Library/TinyTeX/
-texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></Users/EmilioM/Library/Tin
-yTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></Users/EmilioM/Librar
-y/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></Users/EmilioM/L
-ibrary/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb></Users/Emili
-oM/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></Users/E
-milioM/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></Use
-rs/EmilioM/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb><
-/Users/EmilioM/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmsltt
-10.pfb></Users/EmilioM/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/c
-m/cmsy10.pfb></Users/EmilioM/Library/TinyTeX/texmf-dist/fonts/type1/public/amsf
-onts/cm/cmsy5.pfb></Users/EmilioM/Library/TinyTeX/texmf-dist/fonts/type1/public
-/amsfonts/cm/cmsy7.pfb></Users/EmilioM/Library/TinyTeX/texmf-dist/fonts/type1/p
-ublic/amsfonts/cm/cmti10.pfb></Users/EmilioM/Library/TinyTeX/texmf-dist/fonts/t
-ype1/public/amsfonts/cm/cmtt10.pfb></Users/EmilioM/Library/TinyTeX/texmf-dist/f
-onts/type1/public/amsfonts/cm/cmtt12.pfb></Users/EmilioM/Library/TinyTeX/texmf-
-dist/fonts/type1/public/cm-super/sfrm1000.pfb>
-Output written on BGPhazard.pdf (28 pages, 445981 bytes).
-PDF statistics:
- 441 PDF objects out of 1000 (max. 8388607)
- 326 compressed objects within 4 object streams
- 73 named destinations out of 1000 (max. 500000)
- 310 words of extra memory for PDF output out of 10000 (max. 10000000)
-
+ 52i,0n,58p,186b,36s stack positions out of 5000i,500n,10000p,200000b,80000s
+!  ==> Fatal error occurred, no output PDF file produced!

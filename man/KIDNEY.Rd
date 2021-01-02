@@ -4,13 +4,15 @@
 \name{KIDNEY}
 \alias{KIDNEY}
 \title{Recurrent infection of kidney catheters}
-\format{A data frame with 38 rows and 6 variables:
+\format{
+A data frame with 38 rows and 6 variables:
 \describe{
   \item{id}{patient ID}
   \item{t1,t2}{times to infection}
   \item{delta1,delta2}{censorship indicators (1 = exact, 0 = right-censored)}
   \item{sex}{0 = female, 1 = male}
-  }}
+  }
+}
 \source{
 \url{https://www.mayo.edu/research/documents/kidneyhtml/doc-10027569}
 }

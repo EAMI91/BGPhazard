@@ -4,8 +4,11 @@
 \alias{BSBPlotDiag}
 \title{Plot diagnostics for BSBHaz model}
 \usage{
-BSBPlotDiag(bsbhaz, variable = c("omega1", "omega2", "lambda1",
-  "lambda2", "gamma", "theta"), type = c("traceplot", "ergodic_means"))
+BSBPlotDiag(
+  bsbhaz,
+  variable = c("omega1", "omega2", "lambda1", "lambda2", "gamma", "theta"),
+  type = c("traceplot", "ergodic_means")
+)
 }
 \arguments{
 \item{bsbhaz}{An object of class 'BSBHaz' created by

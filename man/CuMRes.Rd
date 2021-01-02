@@ -4,12 +4,27 @@
 \alias{CuMRes}
 \title{Bayesian Semiparametric Cure Rate Model with an Unknown Threshold}
 \usage{
-CuMRes(times, delta = rep(1, length(times)), type.t = 3,
-  length = NULL, K = 50, alpha = rep(0.01, K), beta = rep(0.01, K),
-  c.r = rep(1, (K - 1)), type.c = 4, epsilon = 1, c.nu = 1,
-  a.eps = 0.1, b.eps = 0.1, a.mu = 0.01, b.mu = 0.01,
-  iterations = 1000, burn.in = floor(iterations * 0.2), thinning = 5,
-  printtime = TRUE)
+CuMRes(
+  times,
+  delta = rep(1, length(times)),
+  type.t = 3,
+  length = NULL,
+  K = 50,
+  alpha = rep(0.01, K),
+  beta = rep(0.01, K),
+  c.r = rep(1, (K - 1)),
+  type.c = 4,
+  epsilon = 1,
+  c.nu = 1,
+  a.eps = 0.1,
+  b.eps = 0.1,
+  a.mu = 0.01,
+  b.mu = 0.01,
+  iterations = 1000,
+  burn.in = floor(iterations * 0.2),
+  thinning = 5,
+  printtime = TRUE
+)
 }
 \arguments{
 \item{times}{Numeric positive vector. Failure times.}
@@ -36,7 +51,7 @@ to specify a non-informative prior distribution.}
 
 \item{type.c}{1=defines \code{c.r} as a zero-entry vector; 2=lets the user
 define \code{c.r} freely; 3=assigns \code{c.r} by computing an exponential
-prior distribution with mean 1; 4=assigns \code{c.r} by computing an exponential hierarchical
+prior distribution with mean epsilon; 4=assigns \code{c.r} by computing an exponential hierarchical
 distribution with mean \code{epsilon} which in turn has a Ga(a.eps, b.eps)
 distribution.}
 

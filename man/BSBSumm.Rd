@@ -4,8 +4,10 @@
 \alias{BSBSumm}
 \title{Get posterior summaries for BSBHaz model}
 \usage{
-BSBSumm(bsbhaz, variable = c("omega1", "omega2", "lambda1", "lambda2",
-  "gamma", "theta", "s1", "s2"))
+BSBSumm(
+  bsbhaz,
+  variable = c("omega1", "omega2", "lambda1", "lambda2", "gamma", "theta", "s1", "s2")
+)
 }
 \arguments{
 \item{bsbhaz}{An object of class 'BSBHaz' created by
