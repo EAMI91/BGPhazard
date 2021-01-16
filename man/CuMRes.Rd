@@ -9,7 +9,7 @@ CuMRes(
   delta = rep(1, length(times)),
   type.t = 3,
   length = NULL,
-  K = 50,
+  K = 5,
   alpha = rep(0.01, K),
   beta = rep(0.01, K),
   c.r = rep(1, (K - 1)),
