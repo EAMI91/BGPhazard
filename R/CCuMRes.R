@@ -18,10 +18,11 @@
 #' multiplicative part of the hazard
 #' @param covs.y Character. Names of covariables to determine the cure
 #' threshold por each patient.
-#' @param type.t Integer. 1=computes uniformly-dense intervals; 2=length
-#' intervals defined by the user and 3=same length intervals.
-#' @param length Integer. Interval length of the partition.
+#' @param type.t Integer. 1=computes uniformly-dense intervals; 2=
+#' partition arbitrarily defined by the user with parameter utao and 3=same length intervals.
 #' @param K Integer. Partition length for the hazard function.
+#' @param utao vector. Partition specified by the user when type.t = 2. The first value of 
+#' the vector has to be 0 and the last one the maximum observed time, either censored or uncensored.
 #' @param alpha Nonnegative entry vector. Small entries are recommended in
 #' order to specify a non-informative prior distribution.
 #' @param beta Nonnegative entry vector. Small entries are recommended in order
@@ -82,7 +83,7 @@
 CCuMRes <-
   function(data, covs.x = names(data)[seq.int(3,ncol(data))], 
            covs.y = names(data)[seq.int(3,ncol(data))], 
-           type.t = 3, length = NULL, K = 50, alpha = rep(0.01, K),
+           type.t = 3, K = 50, utao = NULL, alpha = rep(0.01, K),
            beta = rep(0.01, K), c.r = rep(0, K - 1), c.nu = 1, 
            var.theta.str = 25, var.delta.str = 25, var.theta.ini = 100, var.delta.ini = 100,
            type.c = 4, a.eps = 0.1, b.eps = 0.1, epsilon = 1, iterations = 5000, 
@@ -119,11 +120,17 @@ CCuMRes <-
       stop ("Invalid argument: 'times' and 'delta' must have same length.")
     }
     if (type.t == 2) {
-      m <- ceiling(max(times))
-      if (length > m) {
-        stop (c("type.t = 2 requires length <=", m))
+      if(is.null(utao)) stop("If type.t = 2 you need to specify utao.")
+      utao <- sort(utao)
+      if(utao[1]!=0){
+        warning("The first value of the partition needs to be 0, utao fixed and now starting with 0.")
+        utao <- c(0, utao)
+      } 
+      if(max(times) > max(utao)){
+        utao <- c(utao,max(times))
+        warning("The last value of the partition needs to be", max(times),", utao fixed and set to",max(times))
       }
-      K <- ceiling(ceiling(max(times))/length)
+      K <- length(utao) - 1
     }
     if (type.t == 1 || type.t == 3) {
       if (class(try(K != 0, TRUE)) == "try-error") {
@@ -184,7 +191,7 @@ CCuMRes <-
       stop ("Invalid argument: 'printtime' must be a logical value.")
     }
     
-    tao <- Tao(times, delta, type.t, K, length)
+    tao <- Tao(times, delta, type.t, K, utao)
     
     t.unc <- sort(times[delta == 1])
     n <- readr::parse_integer(as.character(table(cut(t.unc,tao))))

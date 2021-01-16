@@ -13,11 +13,12 @@
 #' @param delta Logical vector. Status indicator. \code{TRUE} (1) indicates
 #' exact lifetime is known, \code{FALSE} (0) indicates that the corresponding
 #' failure time is right censored.
-#' @param type.t Integer. 1=computes uniformly-dense intervals; 2=length
-#' intervals defined by the user and 3=same length intervals.
-#' @param length Integer. Interval length for the partition.
+#' @param type.t Integer. 1=computes uniformly-dense intervals; 2=
+#' partition arbitrarily defined by the user with parameter utao and 3=same length intervals.
 #' @param K Integer. Partition length for the hazard function if
 #' \code{type.t}=1 or \code{type.t}=3.
+#' @param utao vector. Partition specified by the user when type.t = 2. The first value of 
+#' the vector has to be 0 and the last one the maximum observed time, either censored or uncensored.
 #' @param alpha Nonnegative entry vector. Small entries are recommended in
 #' order to specify a non-informative prior distribution.
 #' @param beta Nonnegative entry vector. Small entries are recommended in order
@@ -65,7 +66,7 @@
 #' 
 #' @export CuMRes
 CuMRes <-
-  function(times, delta = rep(1, length(times)), type.t = 3, length = NULL, K = 5, 
+  function(times, delta = rep(1, length(times)), type.t = 3, K = 5, utao = NULL,
            alpha = rep(0.01, K), beta = rep(0.01, K), 
            c.r = rep(1, (K - 1)),
            type.c = 4, epsilon = 1, c.nu = 1, a.eps = 0.1, b.eps = 0.1,
@@ -83,11 +84,17 @@ CuMRes <-
       stop ("Invalid argument: 'times' and 'delta' must have same length.")
     }
     if (type.t == 2) {
-      m <- ceiling(max(times))
-      if (length > m) {
-        stop (c("type.t = 2 requires length <=", m))
+      if(is.null(utao)) stop("If type.t = 2 you need to specify utao.")
+      utao <- sort(utao)
+      if(utao[1]!=0){
+        warning("The first value of the partition needs to be 0, utao fixed and now starting with 0.")
+        utao <- c(0, utao)
+      } 
+      if(max(times) > max(utao)){
+        utao <- c(utao,max(times))
+        warning("The last value of the partition needs to be", max(times),", utao fixed and set to",max(times))
       }
-      K <- ceiling(ceiling(max(times))/length)
+      K <- length(utao) - 1
     }
     if (type.t == 1 || type.t == 3) {
       if (class(try(K != 0, TRUE)) == "try-error") {
@@ -147,7 +154,7 @@ CuMRes <-
     if (printtime != TRUE && printtime != FALSE) {
       stop ("Invalid argument: 'printtime' must be a logical value.")
     }
-    nm <- NM(times, delta, type.t, K, length)
+    nm <- NM(times, delta, type.t, K, utao)
     n <- nm$n
     m <- nm$m
     tao <- nm$tao

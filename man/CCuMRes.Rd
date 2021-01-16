@@ -10,8 +10,8 @@ CCuMRes(
   covs.x = names(data)[seq.int(3, ncol(data))],
   covs.y = names(data)[seq.int(3, ncol(data))],
   type.t = 3,
-  length = NULL,
   K = 50,
+  utao = NULL,
   alpha = rep(0.01, K),
   beta = rep(0.01, K),
   c.r = rep(0, K - 1),
@@ -41,12 +41,13 @@ multiplicative part of the hazard}
 \item{covs.y}{Character. Names of covariables to determine the cure
 threshold por each patient.}
 
-\item{type.t}{Integer. 1=computes uniformly-dense intervals; 2=length
-intervals defined by the user and 3=same length intervals.}
-
-\item{length}{Integer. Interval length of the partition.}
+\item{type.t}{Integer. 1=computes uniformly-dense intervals; 2=
+partition arbitrarily defined by the user with parameter utao and 3=same length intervals.}
 
 \item{K}{Integer. Partition length for the hazard function.}
+
+\item{utao}{vector. Partition specified by the user when type.t = 2. The first value of 
+the vector has to be 0 and the last one the maximum observed time, either censored or uncensored.}
 
 \item{alpha}{Nonnegative entry vector. Small entries are recommended in
 order to specify a non-informative prior distribution.}

@@ -1,5 +1,5 @@
 Tao <-
-function(times, delta, type.t, K, length) {
+function(times, delta, type.t, K, utao) {
   t.unc <- sort(times[delta  ==  1])
   if (type.t == 1) {
     n <- length(t.unc)
@@ -15,12 +15,7 @@ function(times, delta, type.t, K, length) {
     }
   }
   if (type.t == 2) {
-    K.t2 <- ceiling(max(times))
-      if(K.t2 %% length != 0){
-        tao <- seq(0, K.t2 + length, by = length)
-      } else{
-        tao <- seq(0, K.t2 , by = length)
-      }
+    tao <- utao
   }
   if (type.t  ==  3) {
     K.t2 <- ceiling(max(times))

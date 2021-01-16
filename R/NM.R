@@ -1,6 +1,6 @@
 NM <-
-  function(times, delta, type.t, K, length) {
-    tao <- Tao(times, delta, type.t, K, length)
+  function(times, delta, type.t, K, utao) {
+    tao <- Tao(times, delta, type.t, K, utao)
     t.unc <- sort(times[delta == 1])
     n <- readr::parse_integer(as.character(table(cut(t.unc,breaks = tao))))
     w <- purrr::map(times, .f= ~ (.x > tao[-1]) * tao[-1] + 
