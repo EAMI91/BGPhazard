@@ -90,7 +90,7 @@ GaMRes<-
       } 
       if(max(times) > max(utao)){
         utao <- c(utao,max(times))
-        warning("The last value of the partition needs to be", max(times),", utao fixed and set to",max(times))
+        warning("The last value of the partition needs to be", max(times),", utao fixed and set to ",max(times),".")
       }
       K <- length(utao) - 1
     }

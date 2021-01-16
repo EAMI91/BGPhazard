@@ -116,11 +116,17 @@ CGaMRes <-
       stop ("Invalid argument: 'times' and 'delta' must have same length.")
     }
     if (type.t == 2) {
-      m <- ceiling(max(times))
-      if (length > m) {
-        stop (c("type.t = 2 requires length <=", m))
+      if(is.null(utao)) stop("If type.t = 2 you need to specify utao.")
+      utao <- sort(utao)
+      if(utao[1]!=0){
+        warning("The first value of the partition needs to be 0, utao fixed and now starting with 0.")
+        utao <- c(0, utao)
+      } 
+      if(max(times) > max(utao)){
+        utao <- c(utao,max(times))
+        warning("The last value of the partition needs to be", max(times),", utao fixed and set to ",max(times),".")
       }
-      K <- ceiling(ceiling(max(times))/length)
+      K <- length(utao) - 1
     }
     
     if (type.t == 1 || type.t == 3) {
