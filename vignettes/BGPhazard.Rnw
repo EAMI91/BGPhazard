@@ -14,7 +14,6 @@
 \begin{document}
 \title{Introduction to \code{BGPhazard}}
 \author{Jos\'e A. Garc\'ia-Bueno and Luis E. Nieto-Barajas}
-\SweaveOpts{concordance=TRUE}
 \maketitle
 
 \section*{Abstract}

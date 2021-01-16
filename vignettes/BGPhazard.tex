@@ -2,7 +2,57 @@
 % Part of the R package, http://www.R-project.org
 % Distributed under GPL 2 or later
 
-\documentclass[letterpaper]{article}
+\documentclass[letterpaper]{article}\usepackage[]{graphicx}\usepackage[]{color}
+% maxwidth is the original width if it is less than linewidth
+% otherwise use linewidth (to make sure the graphics do not exceed the margin)
+\makeatletter
+\def\maxwidth{ %
+  \ifdim\Gin@nat@width>\linewidth
+    \linewidth
+  \else
+    \Gin@nat@width
+  \fi
+}
+\makeatother
+
+\definecolor{fgcolor}{rgb}{0.345, 0.345, 0.345}
+\newcommand{\hlnum}[1]{\textcolor[rgb]{0.686,0.059,0.569}{#1}}%
+\newcommand{\hlstr}[1]{\textcolor[rgb]{0.192,0.494,0.8}{#1}}%
+\newcommand{\hlcom}[1]{\textcolor[rgb]{0.678,0.584,0.686}{\textit{#1}}}%
+\newcommand{\hlopt}[1]{\textcolor[rgb]{0,0,0}{#1}}%
+\newcommand{\hlstd}[1]{\textcolor[rgb]{0.345,0.345,0.345}{#1}}%
+\newcommand{\hlkwa}[1]{\textcolor[rgb]{0.161,0.373,0.58}{\textbf{#1}}}%
+\newcommand{\hlkwb}[1]{\textcolor[rgb]{0.69,0.353,0.396}{#1}}%
+\newcommand{\hlkwc}[1]{\textcolor[rgb]{0.333,0.667,0.333}{#1}}%
+\newcommand{\hlkwd}[1]{\textcolor[rgb]{0.737,0.353,0.396}{\textbf{#1}}}%
+\let\hlipl\hlkwb
+
+\usepackage{framed}
+\makeatletter
+\newenvironment{kframe}{%
+ \def\at@end@of@kframe{}%
+ \ifinner\ifhmode%
+  \def\at@end@of@kframe{\end{minipage}}%
+  \begin{minipage}{\columnwidth}%
+ \fi\fi%
+ \def\FrameCommand##1{\hskip\@totalleftmargin \hskip-\fboxsep
+ \colorbox{shadecolor}{##1}\hskip-\fboxsep
+     % There is no \\@totalrightmargin, so:
+     \hskip-\linewidth \hskip-\@totalleftmargin \hskip\columnwidth}%
+ \MakeFramed {\advance\hsize-\width
+   \@totalleftmargin\z@ \linewidth\hsize
+   \@setminipage}}%
+ {\par\unskip\endMakeFramed%
+ \at@end@of@kframe}
+\makeatother
+
+\definecolor{shadecolor}{rgb}{.97, .97, .97}
+\definecolor{messagecolor}{rgb}{0, 0, 0}
+\definecolor{warningcolor}{rgb}{1, 0, 1}
+\definecolor{errorcolor}{rgb}{1, 0, 0}
+\newenvironment{knitrout}{}{} % an empty environment to be redefined in TeX
+
+\usepackage{alltt}
 \usepackage{Rd}
 \usepackage{caption}
 \usepackage{subcaption}
@@ -10,12 +60,10 @@
 \usepackage[hidelinks]{hyperref}
 
 %\VignetteIndexEntry{Introduction to BGPhazard}
-
-\usepackage{Sweave}
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
 \begin{document}
 \title{Introduction to \code{BGPhazard}}
 \author{Jos\'e A. Garc\'ia-Bueno and Luis E. Nieto-Barajas}
-\input{BGPhazard-concordance}
 \maketitle
 
 \section*{Abstract}
@@ -233,13 +281,15 @@ We present some of the examples contained in the documentation of the package to
 
 For this model, we will be using the control observations of the 6-MP data set (Freireich, E. J., et al., 1963) --data from a trial of 42 leukemia patients organised by pairs in which the first element of the pair is treated with a drug and the other is control--. For examples 1 to 4, we use a partition of unitary length intervals; for the last three examples --5, 6 \& 7--, we use uniformly-dense intervals. The \code{"time"} column is taken as the observed times vector --\code{times}-- and the \code{"cens"} column as the censoring status vector --\code{delta}--:
 
-\begin{Schunk}
-\begin{Sinput}
-> data(gehan)
-> times <- gehan$time[gehan$treat == "6-MP"]
-> delta <- gehan$cens[gehan$treat == "6-MP"]
-\end{Sinput}
-\end{Schunk}
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlkwd{data}\hlstd{(gehan)}
+\hlstd{times} \hlkwb{<-} \hlstd{gehan}\hlopt{$}\hlstd{time[gehan}\hlopt{$}\hlstd{treat} \hlopt{==} \hlstr{"6-MP"}\hlstd{]}
+\hlstd{delta} \hlkwb{<-} \hlstd{gehan}\hlopt{$}\hlstd{cens[gehan}\hlopt{$}\hlstd{treat} \hlopt{==} \hlstr{"6-MP"}\hlstd{]}
+\end{alltt}
+\end{kframe}
+\end{knitrout}
 
 Now that we have a time and censoring status vector, we can run several examples for this model. Default values are used for each function unless otherwise noted. Every example shows our estimate overlapped with the Nelson-Aalen / Kaplan-Meier estimator, so the user can compare them.
 
@@ -247,13 +297,15 @@ Now that we have a time and censoring status vector, we can run several examples
 
 We obtain with our model the Nelson-Aalen and Kaplan-Meier estimators by defining $c_k$ as a null vector --through fixing \code{type.c = 1}--. A unitary partitioned axis is obtained by fixing \code{type.t = 2}. In Figure \ref{fig:G1} we show that our estimators --under independence-- return the same results as the Nelson-Aalen and Kaplan-Meier estimators.
 
-\begin{Schunk}
-\begin{Sinput}
-> ExG1 <- GaMRes(times, delta, type.t = 2, K = 35, type.c = 1, 
-+                iterations = 3000)
-> GaPloth(ExG1, confint = FALSE)
-\end{Sinput}
-\end{Schunk}
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlstd{ExG1} \hlkwb{<-} \hlkwd{GaMRes}\hlstd{(times, delta,} \hlkwc{type.t} \hlstd{=} \hlnum{2}\hlstd{,} \hlkwc{K} \hlstd{=} \hlnum{35}\hlstd{,} \hlkwc{type.c} \hlstd{=} \hlnum{1}\hlstd{,}
+               \hlkwc{iterations} \hlstd{=} \hlnum{3000}\hlstd{)}
+\hlkwd{GaPloth}\hlstd{(ExG1,} \hlkwc{confint} \hlstd{=} \hlnum{FALSE}\hlstd{)}
+\end{alltt}
+\end{kframe}
+\end{knitrout}
 \begin{figure}
   \centering
   \begin{subfigure}[a]{\textwidth}\centering
@@ -272,13 +324,15 @@ We obtain with our model the Nelson-Aalen and Kaplan-Meier estimators by definin
 
 The influence of $c$ --or \code{c.r}-- can be understood as a dependence parameter: the greater the value of each $c_k$, $k=0,1,2,...,K-1$, the higher the dependence between intervals $k$ and $k+1$. For this example, we assign a fixed value to vector $c$, so we use \code{type.c = 2}. Comparing with the previous example, we see that the estimates that were zero, now have a positive value --see Figures \ref{fig:G1} and \ref{fig:G2}--. Note  how this model compares to Example 5 --see Figure \ref{fig:G5}--. The difference between those examples is how the partition is defined.
 
-\begin{Schunk}
-\begin{Sinput}
-> ExG2 <- GaMRes(times, delta, type.t = 2, K = 35, type.c = 2, 
-+                c.r = rep(50, 34), iterations = 3000)
-> GaPloth(ExG2)
-\end{Sinput}
-\end{Schunk}
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlstd{ExG2} \hlkwb{<-} \hlkwd{GaMRes}\hlstd{(times, delta,} \hlkwc{type.t} \hlstd{=} \hlnum{2}\hlstd{,} \hlkwc{K} \hlstd{=} \hlnum{35}\hlstd{,} \hlkwc{type.c} \hlstd{=} \hlnum{2}\hlstd{,}
+               \hlkwc{c.r} \hlstd{=} \hlkwd{rep}\hlstd{(}\hlnum{50}\hlstd{,} \hlnum{34}\hlstd{),} \hlkwc{iterations} \hlstd{=} \hlnum{3000}\hlstd{)}
+\hlkwd{GaPloth}\hlstd{(ExG2)}
+\end{alltt}
+\end{kframe}
+\end{knitrout}
 \begin{figure}
   \centering
   \begin{subfigure}[a]{\textwidth}\centering
@@ -295,11 +349,13 @@ The influence of $c$ --or \code{c.r}-- can be understood as a dependence paramet
 
 Additionally, we can get further detail on the Gibbs sampler with a diagnosis of the resulting Markov chain. We can run this diagnosis for each entry of $\lambda$, $u$, $c$ or $\epsilon$. In Figure \ref{fig:G2a} we show the diagnosis for $\lambda_6$ which includes the trace, the ergodic mean, the ACF function and the histogram for the generated chain.
 
-\begin{Schunk}
-\begin{Sinput}
-> GaPlotDiag(ExG2, variable = "lambda", pos = 6)
-\end{Sinput}
-\end{Schunk}
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlkwd{GaPlotDiag}\hlstd{(ExG2,} \hlkwc{variable} \hlstd{=} \hlstr{"lambda"}\hlstd{,} \hlkwc{pos} \hlstd{=} \hlnum{6}\hlstd{)}
+\end{alltt}
+\end{kframe}
+\end{knitrout}
 
 \begin{figure}
   \centering
@@ -314,13 +370,15 @@ As we reviewed, we can learn about the $\{c_k\}$ via assigning an exponential di
 
 Comparing this example with Example 6 --Figure \ref{fig:G6}--, as with the previous example, the main difference is given by the partition of the time axis. This affects the estimates as we will note later.
 
-\begin{Schunk}
-\begin{Sinput}
-> ExG3 <- GaMRes(times, delta, type.t = 2, K = 35, type.c = 3, epsilon = 1,
-+                iterations = 3000)
-> GaPloth(ExG3)
-\end{Sinput}
-\end{Schunk}
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlstd{ExG3} \hlkwb{<-} \hlkwd{GaMRes}\hlstd{(times, delta,} \hlkwc{type.t} \hlstd{=} \hlnum{2}\hlstd{,} \hlkwc{K} \hlstd{=} \hlnum{35}\hlstd{,} \hlkwc{type.c} \hlstd{=} \hlnum{3}\hlstd{,} \hlkwc{epsilon} \hlstd{=} \hlnum{1}\hlstd{,}
+               \hlkwc{iterations} \hlstd{=} \hlnum{3000}\hlstd{)}
+\hlkwd{GaPloth}\hlstd{(ExG3)}
+\end{alltt}
+\end{kframe}
+\end{knitrout}
 
 \begin{figure}
   \centering
@@ -340,13 +398,15 @@ Comparing this example with Example 6 --Figure \ref{fig:G6}--, as with the previ
 
 Previous example can be extended with a hierarchical model, assigning a distribution to $\epsilon ~ \sim Ga(a_0,b_0)$ with $a_0=b_0=0.01$. In order to set up the model we should set \code{type.c = 4}. The result displayed on Figure \ref{fig:G4} is a soft hazard function and a survival function that decreases faster than the Kaplan-Meier estimate.
 
-\begin{Schunk}
-\begin{Sinput}
-> ExG4 <- GaMRes(times, delta, type.t = 2, K = 35, type.c = 4, 
-+                iterations = 3000)
-> GaPloth(ExG4)
-\end{Sinput}
-\end{Schunk}
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlstd{ExG4} \hlkwb{<-} \hlkwd{GaMRes}\hlstd{(times, delta,} \hlkwc{type.t} \hlstd{=} \hlnum{2}\hlstd{,} \hlkwc{K} \hlstd{=} \hlnum{35}\hlstd{,} \hlkwc{type.c} \hlstd{=} \hlnum{4}\hlstd{,}
+               \hlkwc{iterations} \hlstd{=} \hlnum{3000}\hlstd{)}
+\hlkwd{GaPloth}\hlstd{(ExG4)}
+\end{alltt}
+\end{kframe}
+\end{knitrout}
 
 \begin{figure}
   \centering
@@ -366,13 +426,15 @@ Previous example can be extended with a hierarchical model, assigning a distribu
 
 This example illustrates the same concept as Example 2 --how $c$ introduces dependence--, but with a different partition of the time axis. To get this partition we set \code{type.t = 1}. Figure \ref{fig:G5} shows that the survival function is close to the Kaplan-Meier estimate. The fact that it gets closer to the K-M estimates does not makes it a better estimate, we only could say that this partition yields, in average, a smaller hazard rate than the Example 2 built with a unitary length partition.
 
-\begin{Schunk}
-\begin{Sinput}
-> ExG5 <- GaMRes(times, delta, type.t = 1, K = 8, type.c = 2, 
-+                c.r = rep(50, 7), iterations = 3000)
-> GaPloth(ExG5)
-\end{Sinput}
-\end{Schunk}
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlstd{ExG5} \hlkwb{<-} \hlkwd{GaMRes}\hlstd{(times, delta,} \hlkwc{type.t} \hlstd{=} \hlnum{1}\hlstd{,} \hlkwc{K} \hlstd{=} \hlnum{8}\hlstd{,} \hlkwc{type.c} \hlstd{=} \hlnum{2}\hlstd{,}
+               \hlkwc{c.r} \hlstd{=} \hlkwd{rep}\hlstd{(}\hlnum{50}\hlstd{,} \hlnum{7}\hlstd{),} \hlkwc{iterations} \hlstd{=} \hlnum{3000}\hlstd{)}
+\hlkwd{GaPloth}\hlstd{(ExG5)}
+\end{alltt}
+\end{kframe}
+\end{knitrout}
 
 \begin{figure}
   \centering
@@ -392,13 +454,15 @@ This example illustrates the same concept as Example 2 --how $c$ introduces depe
 
 We can compare this example on Figure \ref{fig:G6} with Example 3 --Figure \ref{fig:G3}--. We use less intervals, so the survival function is smoother. Our estimate decreases faster than the Kaplan-Meier estimate. 
 
-\begin{Schunk}
-\begin{Sinput}
-> ExG6 <- GaMRes(times, delta, type.t = 1, K = 8, type.c = 3,
-+                iterations=3000)
-> GaPloth(ExG6)
-\end{Sinput}
-\end{Schunk}
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlstd{ExG6} \hlkwb{<-} \hlkwd{GaMRes}\hlstd{(times, delta,} \hlkwc{type.t} \hlstd{=} \hlnum{1}\hlstd{,} \hlkwc{K} \hlstd{=} \hlnum{8}\hlstd{,} \hlkwc{type.c} \hlstd{=} \hlnum{3}\hlstd{,}
+               \hlkwc{iterations}\hlstd{=}\hlnum{3000}\hlstd{)}
+\hlkwd{GaPloth}\hlstd{(ExG6)}
+\end{alltt}
+\end{kframe}
+\end{knitrout}
 
 \begin{figure}
   \centering
@@ -418,13 +482,15 @@ We can compare this example on Figure \ref{fig:G6} with Example 3 --Figure \ref{
 
 The survival curve for this particular example results in a smoothed version of the Kaplan-Meier estimate (Figure \ref{fig:G7}). As with previous examples, it can be compared with the unitary partition example (see Example 4, Figure \ref{fig:G4}). 
 
-\begin{Schunk}
-\begin{Sinput}
-> ExG7 <- GaMRes(times, delta, type.t = 1, K = 8, type.c = 4,
-+                iterations = 3000)
-> GaPloth(ExG7)
-\end{Sinput}
-\end{Schunk}
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlstd{ExG7} \hlkwb{<-} \hlkwd{GaMRes}\hlstd{(times, delta,} \hlkwc{type.t} \hlstd{=} \hlnum{1}\hlstd{,} \hlkwc{K} \hlstd{=} \hlnum{8}\hlstd{,} \hlkwc{type.c} \hlstd{=} \hlnum{4}\hlstd{,}
+               \hlkwc{iterations} \hlstd{=} \hlnum{3000}\hlstd{)}
+\hlkwd{GaPloth}\hlstd{(ExG7)}
+\end{alltt}
+\end{kframe}
+\end{knitrout}
 
 \begin{figure}
   \centering
@@ -445,24 +511,28 @@ The survival curve for this particular example results in a smoothed version of 
 \subsection{Beta model examples}
 For this model, we use survival data on 26 psychiatric inpatients admitted to the University of Iowa hospitals during the years 1935-1948. This sample is part of a larger study of psychiatric inpatients discussed by Tsuang and Woolson (1977). We take the \code{"time"} column as the observed times vector --\code{times}-- and the \code{"death"} column as the censoring status vector --\code{delta}--:
 
-\begin{Schunk}
-\begin{Sinput}
-> data(psych)
-> times <- psych$time
-> delta <- psych$death
-\end{Sinput}
-\end{Schunk}
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlkwd{data}\hlstd{(psych)}
+\hlstd{times} \hlkwb{<-} \hlstd{psych}\hlopt{$}\hlstd{time}
+\hlstd{delta} \hlkwb{<-} \hlstd{psych}\hlopt{$}\hlstd{death}
+\end{alltt}
+\end{kframe}
+\end{knitrout}
 
 \subsubsection{Example 1. Independence case}
 
 As with the Gamma Example, we obtain the Nelson-Aalen and Kaplan-Meier estimators by defining $c_k$ as a null vector through fixing \code{type.c = 1} --see Figure \ref{fig:B1}-- The conclusion does not change: the independence case of our model results on the N-A and K-M estimators.
 
-\begin{Schunk}
-\begin{Sinput}
-> ExB1 <- BeMRes(times, delta, type.c = 1, iterations = 3000)
-> BePloth(ExB1, confint = FALSE)
-\end{Sinput}
-\end{Schunk}
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlstd{ExB1} \hlkwb{<-} \hlkwd{BeMRes}\hlstd{(times, delta,} \hlkwc{type.c} \hlstd{=} \hlnum{1}\hlstd{,} \hlkwc{iterations} \hlstd{=} \hlnum{3000}\hlstd{)}
+\hlkwd{BePloth}\hlstd{(ExB1,} \hlkwc{confint} \hlstd{=} \hlnum{FALSE}\hlstd{)}
+\end{alltt}
+\end{kframe}
+\end{knitrout}
 
 \begin{figure}
   \centering
@@ -482,13 +552,15 @@ As with the Gamma Example, we obtain the Nelson-Aalen and Kaplan-Meier estimator
 
 The influence of $c$ --or \code{c.r}-- can be also understood as a dependence parameter: the greater the value of each $c_k$, $k=0,1,2,...,K-1$, the higher the dependence between intervals $k$ and $k+1$. In this example, we fix each $c$ entry at 100. As we are defining vector $c$ with fixed values, we should fix \code{type.c = 2}. We see on Figure \ref{fig:B2} that the hazard function estimate turns smoother than on the previous example. The steps on the survival function appear to be more uniform than on the Kaplan-Meier estimate. 
  
-\begin{Schunk}
-\begin{Sinput}
-> ExB2 <- BeMRes(times, delta, type.c = 2, c.r = rep(100, 39), 
-+                iterations = 3000)
-> BePloth(ExB2)
-\end{Sinput}
-\end{Schunk}
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlstd{ExB2} \hlkwb{<-} \hlkwd{BeMRes}\hlstd{(times, delta,} \hlkwc{type.c} \hlstd{=} \hlnum{2}\hlstd{,} \hlkwc{c.r} \hlstd{=} \hlkwd{rep}\hlstd{(}\hlnum{100}\hlstd{,} \hlnum{39}\hlstd{),}
+               \hlkwc{iterations} \hlstd{=} \hlnum{3000}\hlstd{)}
+\hlkwd{BePloth}\hlstd{(ExB2)}
+\end{alltt}
+\end{kframe}
+\end{knitrout}
 
 \begin{figure}
   \centering
@@ -506,11 +578,13 @@ The influence of $c$ --or \code{c.r}-- can be also understood as a dependence pa
 
 Additionally, we can get further detail on the Gibbs sampler with a diagnosis of the resulting Markov chain. We can run this diagnosis for each entry from $\pi$, $u$, $c$ or $\epsilon$. In Figure \ref{fig:B2a} we show the diagnosis for $\pi_{10}$ which includes plot of the trace, the ergodic mean, the ACF function and the histogram of the chain.
 
-\begin{Schunk}
-\begin{Sinput}
-> BePlotDiag(ExB2, variable = "Pi", pos = 6)
-\end{Sinput}
-\end{Schunk}
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlkwd{BePlotDiag}\hlstd{(ExB2,} \hlkwc{variable} \hlstd{=} \hlstr{"Pi"}\hlstd{,} \hlkwc{pos} \hlstd{=} \hlnum{6}\hlstd{)}
+\end{alltt}
+\end{kframe}
+\end{knitrout}
 
 \begin{figure}
   \centering
@@ -523,12 +597,14 @@ Additionally, we can get further detail on the Gibbs sampler with a diagnosis of
 
 As with the gamma model, we can learn about the $\{c_k\}$ via assigning an exponential distribution with mean $\epsilon$. The estimates using $\epsilon = 1$ and unitary length intervals are shown on Figure \ref{fig:B3}. Note that the confidence intervals have widen: it is a signal that we have introduced variability to the model --because of the distribution assigned to $c$--.
  
-\begin{Schunk}
-\begin{Sinput}
-> ExB3 <- BeMRes(times, delta, type.c = 3, epsilon = 1, iterations = 3000)
-> BePloth(ExB3)
-\end{Sinput}
-\end{Schunk}
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlstd{ExB3} \hlkwb{<-} \hlkwd{BeMRes}\hlstd{(times, delta,} \hlkwc{type.c} \hlstd{=} \hlnum{3}\hlstd{,} \hlkwc{epsilon} \hlstd{=} \hlnum{1}\hlstd{,} \hlkwc{iterations} \hlstd{=} \hlnum{3000}\hlstd{)}
+\hlkwd{BePloth}\hlstd{(ExB3)}
+\end{alltt}
+\end{kframe}
+\end{knitrout}
 
 \begin{figure}
   \centering
@@ -548,12 +624,14 @@ As with the gamma model, we can learn about the $\{c_k\}$ via assigning an expon
 
 The previous example can be extended with a hierarchical model, assigning a distribution to $\epsilon ~ \sim Ga(a_0,b_0)$, with $a_0=b_0=0.01$. In order to set up the model we should set \code{type.c = 4}. The result displayed on Figure \ref{fig:B4} is a soft hazard function and a survival function that decreases faster than the Kaplan-Meier estimate.
 
-\begin{Schunk}
-\begin{Sinput}
-> ExB4 <- BeMRes(times, delta, type.c = 4, iterations = 3000)
-> BePloth(ExB4)
-\end{Sinput}
-\end{Schunk}
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlstd{ExB4} \hlkwb{<-} \hlkwd{BeMRes}\hlstd{(times, delta,} \hlkwc{type.c} \hlstd{=} \hlnum{4}\hlstd{,} \hlkwc{iterations} \hlstd{=} \hlnum{3000}\hlstd{)}
+\hlkwd{BePloth}\hlstd{(ExB4)}
+\end{alltt}
+\end{kframe}
+\end{knitrout}
 
 \begin{figure}
   \centering
@@ -607,32 +685,34 @@ On the other hand, we use almost every default parameter from \code{CGaMRes} exc
 
 Below, we show the code for the Weibull model and the calls for the plots for the hazard and survival functions --command \code{CGaPloth(M)}--, the predictive distribution for an observation defined as the median of the data --\code{CGaPred(M)}--, and the plots for $\theta_1$ and $\theta_2$ --\code{PlotTheta(M)}--.
 
-\begin{Schunk}
-\begin{Sinput}
-> SampWeibull <- function(n, a = 10, b = 1, beta = c(1, 1)) {
-+   M <- matrix(0, ncol = 7, nrow = n)
-+   for(i in 1:n){
-+     M[i, 1] <- i
-+     M[i, 2] <- x1 <- runif(1)
-+     M[i, 3] <- x2 <- runif(1)
-+     M[i, 4] <- rweibull(1, shape = b, 
-+                         scale = 1 / (a * exp(cbind(x1, x2) %*% beta)))
-+     M[i, 5] <- rexp(1)
-+     M[i, 6] <- M[i, 4] > M[i, 5]
-+     M[i, 7] <- min(M[i, 4], M[i, 5])
-+   }
-+   colnames(M) <- c("i", "x_i1", "x_i2", "t_i", "c_i", "delta",
-+                    "min{c_i, d_i}")
-+   return(M)
-+ }
-> dat <- SampWeibull(100, 0.1, 1, c(1, 1))
-> dat <- cbind(dat[, c(4, 6)], dat[, c(2, 3)])
-> CG <- CGaMRes(dat, K = 10, iterations = 3000, thpar = 10)
-> CGaPloth(CG)
-> PlotTheta(CG)
-> CGaPred(CG)
-\end{Sinput}
-\end{Schunk}
+\begin{knitrout}
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\begin{kframe}
+\begin{alltt}
+\hlstd{SampWeibull} \hlkwb{<-} \hlkwa{function}\hlstd{(}\hlkwc{n}\hlstd{,} \hlkwc{a} \hlstd{=} \hlnum{10}\hlstd{,} \hlkwc{b} \hlstd{=} \hlnum{1}\hlstd{,} \hlkwc{beta} \hlstd{=} \hlkwd{c}\hlstd{(}\hlnum{1}\hlstd{,} \hlnum{1}\hlstd{)) \{}
+  \hlstd{M} \hlkwb{<-} \hlkwd{matrix}\hlstd{(}\hlnum{0}\hlstd{,} \hlkwc{ncol} \hlstd{=} \hlnum{7}\hlstd{,} \hlkwc{nrow} \hlstd{= n)}
+  \hlkwa{for}\hlstd{(i} \hlkwa{in} \hlnum{1}\hlopt{:}\hlstd{n)\{}
+    \hlstd{M[i,} \hlnum{1}\hlstd{]} \hlkwb{<-} \hlstd{i}
+    \hlstd{M[i,} \hlnum{2}\hlstd{]} \hlkwb{<-} \hlstd{x1} \hlkwb{<-} \hlkwd{runif}\hlstd{(}\hlnum{1}\hlstd{)}
+    \hlstd{M[i,} \hlnum{3}\hlstd{]} \hlkwb{<-} \hlstd{x2} \hlkwb{<-} \hlkwd{runif}\hlstd{(}\hlnum{1}\hlstd{)}
+    \hlstd{M[i,} \hlnum{4}\hlstd{]} \hlkwb{<-} \hlkwd{rweibull}\hlstd{(}\hlnum{1}\hlstd{,} \hlkwc{shape} \hlstd{= b,}
+                        \hlkwc{scale} \hlstd{=} \hlnum{1} \hlopt{/} \hlstd{(a} \hlopt{*} \hlkwd{exp}\hlstd{(}\hlkwd{cbind}\hlstd{(x1, x2)} \hlopt{%*%} \hlstd{beta)))}
+    \hlstd{M[i,} \hlnum{5}\hlstd{]} \hlkwb{<-} \hlkwd{rexp}\hlstd{(}\hlnum{1}\hlstd{)}
+    \hlstd{M[i,} \hlnum{6}\hlstd{]} \hlkwb{<-} \hlstd{M[i,} \hlnum{4}\hlstd{]} \hlopt{>} \hlstd{M[i,} \hlnum{5}\hlstd{]}
+    \hlstd{M[i,} \hlnum{7}\hlstd{]} \hlkwb{<-} \hlkwd{min}\hlstd{(M[i,} \hlnum{4}\hlstd{], M[i,} \hlnum{5}\hlstd{])}
+  \hlstd{\}}
+  \hlkwd{colnames}\hlstd{(M)} \hlkwb{<-} \hlkwd{c}\hlstd{(}\hlstr{"i"}\hlstd{,} \hlstr{"x_i1"}\hlstd{,} \hlstr{"x_i2"}\hlstd{,} \hlstr{"t_i"}\hlstd{,} \hlstr{"c_i"}\hlstd{,} \hlstr{"delta"}\hlstd{,}
+                   \hlstr{"min\{c_i, d_i\}"}\hlstd{)}
+  \hlkwd{return}\hlstd{(M)}
+\hlstd{\}}
+\hlstd{dat} \hlkwb{<-} \hlkwd{SampWeibull}\hlstd{(}\hlnum{100}\hlstd{,} \hlnum{0.1}\hlstd{,} \hlnum{1}\hlstd{,} \hlkwd{c}\hlstd{(}\hlnum{1}\hlstd{,} \hlnum{1}\hlstd{))}
+\hlstd{dat} \hlkwb{<-} \hlkwd{cbind}\hlstd{(dat[,} \hlkwd{c}\hlstd{(}\hlnum{4}\hlstd{,} \hlnum{6}\hlstd{)], dat[,} \hlkwd{c}\hlstd{(}\hlnum{2}\hlstd{,} \hlnum{3}\hlstd{)])}
+\hlstd{CG} \hlkwb{<-} \hlkwd{CGaMRes}\hlstd{(dat,} \hlkwc{K} \hlstd{=} \hlnum{10}\hlstd{,} \hlkwc{iterations} \hlstd{=} \hlnum{3000}\hlstd{,} \hlkwc{thpar} \hlstd{=} \hlnum{10}\hlstd{)}
+\hlkwd{CGaPloth}\hlstd{(CG)}
+\hlkwd{PlotTheta}\hlstd{(CG)}
+\hlkwd{CGaPred}\hlstd{(CG)}
+\end{alltt}
+\end{kframe}
+\end{knitrout}
 
 Because of the way we built the model, we can compare against theoretical results on the Weibull model. In Figure \ref{fig:CG1} we see that the hazard rate estimate is practically the same from t = 8 to t = 37. The estimate for the survival functions gets very close to the real value. Plots and histograms for $\theta$ from Figure \ref{fig:CG2} show estimated values for the regression coefficients $(\theta_1,\theta_2)$ and they are consistently near to 1. Finally, the plots from Figure \ref{fig:CG3} show the hazard rate estimate over a equally dense partition for a future individual where its explanatory variable is equal to the median of the observations --$x_F$--. Note that the effect over the hazard function is given by the product of the baseline hazard function and $\exp\{x_F'\theta\}$.
  
