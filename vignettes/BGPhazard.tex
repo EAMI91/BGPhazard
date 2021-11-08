@@ -53,11 +53,13 @@
 \newenvironment{knitrout}{}{} % an empty environment to be redefined in TeX
 
 \usepackage{alltt}
-\usepackage{Rd}
+\usepackage{Rd} 
 \usepackage{caption}
 \usepackage{subcaption}
 \usepackage{amsmath}
-\usepackage[hidelinks]{hyperref}
+\usepackage[OPTIONS]{hyperref}
+
+
 
 %\VignetteIndexEntry{Introduction to BGPhazard}
 \IfFileExists{upquote.sty}{\usepackage{upquote}}{}
@@ -320,7 +322,7 @@ We obtain with our model the Nelson-Aalen and Kaplan-Meier estimators by definin
   \label{fig:G1}
 \end{figure}
 
-\subsubsection{Example 2. Introducing dependence through $c$. Unitary length intervals}
+\subsubsection{Example 2. Introducing dependence through c. Unitary length intervals}
 
 The influence of $c$ --or \code{c.r}-- can be understood as a dependence parameter: the greater the value of each $c_k$, $k=0,1,2,...,K-1$, the higher the dependence between intervals $k$ and $k+1$. For this example, we assign a fixed value to vector $c$, so we use \code{type.c = 2}. Comparing with the previous example, we see that the estimates that were zero, now have a positive value --see Figures \ref{fig:G1} and \ref{fig:G2}--. Note  how this model compares to Example 5 --see Figure \ref{fig:G5}--. The difference between those examples is how the partition is defined.
 
@@ -333,6 +335,7 @@ The influence of $c$ --or \code{c.r}-- can be understood as a dependence paramet
 \end{alltt}
 \end{kframe}
 \end{knitrout}
+
 \begin{figure}
   \centering
   \begin{subfigure}[a]{\textwidth}\centering
@@ -343,7 +346,7 @@ The influence of $c$ --or \code{c.r}-- can be understood as a dependence paramet
     \includegraphics[width=\textwidth]{G22.png}
     \caption{Survival function}
   \end{subfigure}
-  \caption{Gamma Example 2 - Introducing dependence through $c$ ($c_k=50, \forall k$). Unitary length intervals}
+  \caption{Gamma Example 2 - Introducing dependence through c ($c_k=50, \forall k$). Unitary length intervals}
   \label{fig:G2}
 \end{figure}
 
@@ -364,7 +367,7 @@ Additionally, we can get further detail on the Gibbs sampler with a diagnosis of
   \label{fig:G2a}
 \end{figure}
 
-\subsubsection{Example 3. Varying $c$ through a distribution. Unitary length intervals}
+\subsubsection{Example 3. Varying c through a distribution. Unitary length intervals}
 
 As we reviewed, we can learn about the $\{c_k\}$ via assigning an exponential distribution with mean $\epsilon$. The estimates using $\epsilon = 1$ --\code{type.c = 3}-- and unitary length intervals --\code{type.t = 2}-- are shown in Figure \ref{fig:G3}. We can compare the hazard function with the previous example, where $c$ was fixed, and observe that because of the variability given to $c$, the change on the estimated values between two contiguous intervals are greater in this example. The survival function echoes the shape of the Kaplan-Meier with higher decrease rates. 
 
@@ -394,7 +397,7 @@ Comparing this example with Example 6 --Figure \ref{fig:G6}--, as with the previ
   \label{fig:G3}
 \end{figure}
 
-\subsubsection{Example 4. Using a hierarchical model to estimate $c$. Unitary intervals}
+\subsubsection{Example 4. Using a hierarchical model to estimate c. Unitary intervals}
 
 Previous example can be extended with a hierarchical model, assigning a distribution to $\epsilon ~ \sim Ga(a_0,b_0)$ with $a_0=b_0=0.01$. In order to set up the model we should set \code{type.c = 4}. The result displayed on Figure \ref{fig:G4} is a soft hazard function and a survival function that decreases faster than the Kaplan-Meier estimate.
 
@@ -422,7 +425,7 @@ Previous example can be extended with a hierarchical model, assigning a distribu
   \label{fig:G4}
 \end{figure}
 
-\subsubsection{Example 5. Introducing dependence through $c$. Equally dense intervals}
+\subsubsection{Example 5. Introducing dependence through c. Equally dense intervals}
 
 This example illustrates the same concept as Example 2 --how $c$ introduces dependence--, but with a different partition of the time axis. To get this partition we set \code{type.t = 1}. Figure \ref{fig:G5} shows that the survival function is close to the Kaplan-Meier estimate. The fact that it gets closer to the K-M estimates does not makes it a better estimate, we only could say that this partition yields, in average, a smaller hazard rate than the Example 2 built with a unitary length partition.
 
@@ -450,7 +453,7 @@ This example illustrates the same concept as Example 2 --how $c$ introduces depe
   \label{fig:G5}
 \end{figure}
 
-\subsubsection{Example 6. Varying $c$ through a distribution. Equally dense intervals}
+\subsubsection{Example 6. Varying c through a distribution. Equally dense intervals}
 
 We can compare this example on Figure \ref{fig:G6} with Example 3 --Figure \ref{fig:G3}--. We use less intervals, so the survival function is smoother. Our estimate decreases faster than the Kaplan-Meier estimate. 
 
@@ -478,7 +481,7 @@ We can compare this example on Figure \ref{fig:G6} with Example 3 --Figure \ref{
   \label{fig:G6}
 \end{figure}
 
-\subsubsection{Example 7. Using a hierarchical model to estimate $c$. Equally dense intervals}
+\subsubsection{Example 7. Using a hierarchical model to estimate c. Equally dense intervals}
 
 The survival curve for this particular example results in a smoothed version of the Kaplan-Meier estimate (Figure \ref{fig:G7}). As with previous examples, it can be compared with the unitary partition example (see Example 4, Figure \ref{fig:G4}). 
 
@@ -548,7 +551,7 @@ As with the Gamma Example, we obtain the Nelson-Aalen and Kaplan-Meier estimator
   \label{fig:B1}
 \end{figure}
  
-\subsubsection{Example 2. Introducing dependence through $c$}
+\subsubsection{Example 2. Introducing dependence through c}
 
 The influence of $c$ --or \code{c.r}-- can be also understood as a dependence parameter: the greater the value of each $c_k$, $k=0,1,2,...,K-1$, the higher the dependence between intervals $k$ and $k+1$. In this example, we fix each $c$ entry at 100. As we are defining vector $c$ with fixed values, we should fix \code{type.c = 2}. We see on Figure \ref{fig:B2} that the hazard function estimate turns smoother than on the previous example. The steps on the survival function appear to be more uniform than on the Kaplan-Meier estimate. 
  
@@ -593,7 +596,7 @@ Additionally, we can get further detail on the Gibbs sampler with a diagnosis of
   \label{fig:B2a}
 \end{figure}
 
-\subsubsection{Example 3. Varying $c$ through a distribution}
+\subsubsection{Example 3. Varying c through a distribution}
 
 As with the gamma model, we can learn about the $\{c_k\}$ via assigning an exponential distribution with mean $\epsilon$. The estimates using $\epsilon = 1$ and unitary length intervals are shown on Figure \ref{fig:B3}. Note that the confidence intervals have widen: it is a signal that we have introduced variability to the model --because of the distribution assigned to $c$--.
  
@@ -620,7 +623,7 @@ As with the gamma model, we can learn about the $\{c_k\}$ via assigning an expon
   \label{fig:B3}
 \end{figure}
 
-\subsubsection{Example 4. Using a hierarchical model to estimate $c$}
+\subsubsection{Example 4. Using a hierarchical model to estimate c}
 
 The previous example can be extended with a hierarchical model, assigning a distribution to $\epsilon ~ \sim Ga(a_0,b_0)$, with $a_0=b_0=0.01$. In order to set up the model we should set \code{type.c = 4}. The result displayed on Figure \ref{fig:B4} is a soft hazard function and a survival function that decreases faster than the Kaplan-Meier estimate.
 

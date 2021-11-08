@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020) (preloaded format=pdflatex 2021.1.16)  16 JAN 2021 17:32
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020) (preloaded format=pdflatex 2021.1.20)  8 NOV 2021 17:07
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -269,6 +269,19 @@ sty
 Package: etexcmds 2019/12/15 v1.7 Avoid name clashes with e-TeX commands (HO)
 )
 \Hy@SavedSpaceFactor=\count274
+
+
+! Package keyval Error: OPTIONS undefined.
+
+See the keyval package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.4338 \ProcessKeyvalOptions{Hyp}
+                                 
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
 Package hyperref Info: Hyper figures OFF on input line 4464.
 Package hyperref Info: Link nesting OFF on input line 4469.
 Package hyperref Info: Hyper index ON on input line 4472.
@@ -279,7 +292,6 @@ Package hyperref Info: Bookmarks ON on input line 4717.
 \c@Hy@tempcnt=\count275
 LaTeX Info: Redefining \url on input line 5076.
 \XeTeXLinkMargin=\dimen163
-
 (/Users/emiliomorones/Library/TinyTeX/texmf-dist/tex/generic/bitset/bitset.sty
 Package: bitset 2019/12/09 v1.3 Handle bit-vector datatype (HO)
 
@@ -346,22 +358,22 @@ File: l3backend-pdftex.def 2021-01-09 L3 backend support: PDF output (pdfTeX)
 ) (./BGPhazard.aux)
 \openout1 = `BGPhazard.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 64.
-LaTeX Font Info:    ... okay on input line 64.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 64.
-LaTeX Font Info:    ... okay on input line 64.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 64.
-LaTeX Font Info:    ... okay on input line 64.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 64.
-LaTeX Font Info:    ... okay on input line 64.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 64.
-LaTeX Font Info:    ... okay on input line 64.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 64.
-LaTeX Font Info:    ... okay on input line 64.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 64.
-LaTeX Font Info:    ... okay on input line 64.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 64.
-LaTeX Font Info:    ... okay on input line 64.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 66.
+LaTeX Font Info:    ... okay on input line 66.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 66.
+LaTeX Font Info:    ... okay on input line 66.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 66.
+LaTeX Font Info:    ... okay on input line 66.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 66.
+LaTeX Font Info:    ... okay on input line 66.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 66.
+LaTeX Font Info:    ... okay on input line 66.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 66.
+LaTeX Font Info:    ... okay on input line 66.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 66.
+LaTeX Font Info:    ... okay on input line 66.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 66.
+LaTeX Font Info:    ... okay on input line 66.
 
 (/Users/emiliomorones/Library/TinyTeX/texmf-dist/tex/latex/epstopdf-pkg/epstopd
 f-base.sty
@@ -377,7 +389,7 @@ e
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: hyperref package is loaded.
 Package caption Info: End \AtBeginDocument code.
-Package hyperref Info: Link coloring OFF on input line 64.
+Package hyperref Info: Link coloring OFF on input line 66.
 
 (/Users/emiliomorones/Library/TinyTeX/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2019/09/16 v2.46 Cross-referencing by name of section
@@ -392,9 +404,9 @@ Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
 )
 \c@section@level=\count283
 )
-LaTeX Info: Redefining \ref on input line 64.
-LaTeX Info: Redefining \pageref on input line 64.
-LaTeX Info: Redefining \nameref on input line 64.
+LaTeX Info: Redefining \ref on input line 66.
+LaTeX Info: Redefining \pageref on input line 66.
+LaTeX Info: Redefining \nameref on input line 66.
  (./BGPhazard.out) (./BGPhazard.out)
 \@outlinefile=\write3
 \openout3 = `BGPhazard.out'.
@@ -408,247 +420,176 @@ LaTeX Info: Redefining \nameref on input line 64.
 
 {/Users/emiliomorones/Library/TinyTeX/texmf-var/fonts/map/pdftex/updmap/pdftex.
 map}] [2] [3] [4] [5]
-Package color Info: Redefining color shadecolor on input line 285.
+Package color Info: Redefining color shadecolor on input line 287.
  [6]
 LaTeX Font Info:    Font shape `OT1/cmtt/bx/n' in size <10> not available
-(Font)              Font shape `OT1/cmtt/m/n' tried instead on input line 287.
-Package color Info: Redefining color shadecolor on input line 301.
+(Font)              Font shape `OT1/cmtt/m/n' tried instead on input line 289.
+Package color Info: Redefining color shadecolor on input line 303.
 <G11.png, id=156, 597.23125pt x 380.42125pt>
 File: G11.png Graphic file (type png)
 <use G11.png>
-Package pdftex.def Info: G11.png  used on input line 312.
+Package pdftex.def Info: G11.png  used on input line 314.
 (pdftex.def)             Requested size: 413.2866pt x 263.25716pt.
 <G12.png, id=157, 597.23125pt x 380.42125pt>
 File: G12.png Graphic file (type png)
 <use G12.png>
-Package pdftex.def Info: G12.png  used on input line 316.
+Package pdftex.def Info: G12.png  used on input line 318.
 (pdftex.def)             Requested size: 413.2866pt x 263.25716pt.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `math shift' on input line 323.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `math shift' on input line 323.
-
-Package color Info: Redefining color shadecolor on input line 328.
+Package color Info: Redefining color shadecolor on input line 330.
 <G21.png, id=161, 597.23125pt x 380.42125pt>
 File: G21.png Graphic file (type png)
 <use G21.png>
-Package pdftex.def Info: G21.png  used on input line 339.
+Package pdftex.def Info: G21.png  used on input line 342.
 (pdftex.def)             Requested size: 413.2866pt x 263.25716pt.
 <G22.png, id=162, 597.23125pt x 380.42125pt>
 File: G22.png Graphic file (type png)
 <use G22.png>
-Package pdftex.def Info: G22.png  used on input line 343.
+Package pdftex.def Info: G22.png  used on input line 346.
 (pdftex.def)             Requested size: 413.2866pt x 263.25716pt.
 
-LaTeX Warning: Float too large for page by 11.37102pt on input line 348.
 
-Package color Info: Redefining color shadecolor on input line 353.
+LaTeX Warning: Float too large for page by 11.37102pt on input line 351.
+
+Package color Info: Redefining color shadecolor on input line 356.
 [7] [8 <./G11.png> <./G12.png>] [9 <./G21.png> <./G22.png>]
 <G23.png, id=187, 957.5775pt x 485.815pt>
 File: G23.png Graphic file (type png)
 <use G23.png>
-Package pdftex.def Info: G23.png  used on input line 362.
+Package pdftex.def Info: G23.png  used on input line 365.
 (pdftex.def)             Requested size: 413.2866pt x 209.67473pt.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `math shift' on input line 367.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `math shift' on input line 367.
-
-Package color Info: Redefining color shadecolor on input line 374.
+Package color Info: Redefining color shadecolor on input line 377.
 <G31.png, id=190, 597.23125pt x 380.42125pt>
 File: G31.png Graphic file (type png)
 <use G31.png>
-Package pdftex.def Info: G31.png  used on input line 386.
+Package pdftex.def Info: G31.png  used on input line 389.
 (pdftex.def)             Requested size: 413.2866pt x 263.25716pt.
 <G32.png, id=191, 597.23125pt x 380.42125pt>
 File: G32.png Graphic file (type png)
 <use G32.png>
-Package pdftex.def Info: G32.png  used on input line 390.
+Package pdftex.def Info: G32.png  used on input line 393.
 (pdftex.def)             Requested size: 413.2866pt x 263.25716pt.
 
-LaTeX Warning: Float too large for page by 11.37102pt on input line 395.
 
+LaTeX Warning: Float too large for page by 11.37102pt on input line 398.
 
-Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `math shift' on input line 397.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `math shift' on input line 397.
-
-Package color Info: Redefining color shadecolor on input line 402.
+Package color Info: Redefining color shadecolor on input line 405.
 [10 <./G23.png>] [11 <./G31.png> <./G32.png>]
 <G41.png, id=207, 597.23125pt x 380.42125pt>
 File: G41.png Graphic file (type png)
 <use G41.png>
-Package pdftex.def Info: G41.png  used on input line 414.
+Package pdftex.def Info: G41.png  used on input line 417.
 (pdftex.def)             Requested size: 413.2866pt x 263.25716pt.
 <G42.png, id=208, 597.23125pt x 380.42125pt>
 File: G42.png Graphic file (type png)
 <use G42.png>
-Package pdftex.def Info: G42.png  used on input line 418.
+Package pdftex.def Info: G42.png  used on input line 421.
 (pdftex.def)             Requested size: 413.2866pt x 263.25716pt.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `math shift' on input line 425.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `math shift' on input line 425.
-
-Package color Info: Redefining color shadecolor on input line 430.
+Package color Info: Redefining color shadecolor on input line 433.
 <G51.png, id=210, 597.23125pt x 380.42125pt>
 File: G51.png Graphic file (type png)
 <use G51.png>
-Package pdftex.def Info: G51.png  used on input line 442.
+Package pdftex.def Info: G51.png  used on input line 445.
 (pdftex.def)             Requested size: 413.2866pt x 263.25716pt.
 <G52.png, id=211, 597.23125pt x 380.42125pt>
 File: G52.png Graphic file (type png)
 <use G52.png>
-Package pdftex.def Info: G52.png  used on input line 446.
+Package pdftex.def Info: G52.png  used on input line 449.
 (pdftex.def)             Requested size: 413.2866pt x 263.25716pt.
 
-LaTeX Warning: Float too large for page by 11.37102pt on input line 451.
 
+LaTeX Warning: Float too large for page by 11.37102pt on input line 454.
 
-Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `math shift' on input line 453.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `math shift' on input line 453.
-
-Package color Info: Redefining color shadecolor on input line 458.
+Package color Info: Redefining color shadecolor on input line 461.
 <G61.png, id=214, 597.23125pt x 380.42125pt>
 File: G61.png Graphic file (type png)
 <use G61.png>
-Package pdftex.def Info: G61.png  used on input line 470.
+Package pdftex.def Info: G61.png  used on input line 473.
 (pdftex.def)             Requested size: 413.2866pt x 263.25716pt.
 <G62.png, id=215, 597.23125pt x 380.42125pt>
 File: G62.png Graphic file (type png)
 <use G62.png>
-Package pdftex.def Info: G62.png  used on input line 474.
+Package pdftex.def Info: G62.png  used on input line 477.
 (pdftex.def)             Requested size: 413.2866pt x 263.25716pt.
 
-LaTeX Warning: Float too large for page by 11.37102pt on input line 479.
+LaTeX Warning: Float too large for page by 11.37102pt on input line 482.
 
-
-Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `math shift' on input line 481.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `math shift' on input line 481.
-
-Package color Info: Redefining color shadecolor on input line 486.
+Package color Info: Redefining color shadecolor on input line 489.
 <G71.png, id=218, 597.23125pt x 380.42125pt>
 File: G71.png Graphic file (type png)
 <use G71.png>
-Package pdftex.def Info: G71.png  used on input line 498.
+Package pdftex.def Info: G71.png  used on input line 501.
 (pdftex.def)             Requested size: 413.2866pt x 263.25716pt.
 <G72.png, id=219, 597.23125pt x 380.42125pt>
 File: G72.png Graphic file (type png)
 <use G72.png>
-Package pdftex.def Info: G72.png  used on input line 502.
+Package pdftex.def Info: G72.png  used on input line 505.
 (pdftex.def)             Requested size: 413.2866pt x 263.25716pt.
-Package color Info: Redefining color shadecolor on input line 515.
+Package color Info: Redefining color shadecolor on input line 518.
 [12] [13 <./G41.png> <./G42.png>] [14 <./G51.png> <./G52.png>] [15 <./G61.png> 
 <./G62.png>] [16 <./G71.png> <./G72.png>]
-Package color Info: Redefining color shadecolor on input line 529.
+Package color Info: Redefining color shadecolor on input line 532.
 <B11.png, id=251, 597.23125pt x 380.42125pt>
 File: B11.png Graphic file (type png)
 <use B11.png>
-Package pdftex.def Info: B11.png  used on input line 540.
+Package pdftex.def Info: B11.png  used on input line 543.
 (pdftex.def)             Requested size: 413.2866pt x 263.25716pt.
 <B12.png, id=252, 597.23125pt x 380.42125pt>
 File: B12.png Graphic file (type png)
 <use B12.png>
-Package pdftex.def Info: B12.png  used on input line 544.
+Package pdftex.def Info: B12.png  used on input line 547.
 (pdftex.def)             Requested size: 413.2866pt x 263.25716pt.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `math shift' on input line 551.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `math shift' on input line 551.
-
-Package color Info: Redefining color shadecolor on input line 556.
+Package color Info: Redefining color shadecolor on input line 559.
 <B21.png, id=254, 597.23125pt x 380.42125pt>
 File: B21.png Graphic file (type png)
 <use B21.png>
-Package pdftex.def Info: B21.png  used on input line 568.
+Package pdftex.def Info: B21.png  used on input line 571.
 (pdftex.def)             Requested size: 413.2866pt x 263.25716pt.
 <B22.png, id=255, 597.23125pt x 380.42125pt>
 File: B22.png Graphic file (type png)
 <use B22.png>
-Package pdftex.def Info: B22.png  used on input line 572.
+Package pdftex.def Info: B22.png  used on input line 575.
 (pdftex.def)             Requested size: 413.2866pt x 263.25716pt.
-Package color Info: Redefining color shadecolor on input line 582.
+Package color Info: Redefining color shadecolor on input line 585.
 <B23.png, id=257, 957.5775pt x 485.815pt>
 File: B23.png Graphic file (type png)
 <use B23.png>
-Package pdftex.def Info: B23.png  used on input line 591.
+Package pdftex.def Info: B23.png  used on input line 594.
 (pdftex.def)             Requested size: 413.2866pt x 209.67473pt.
-
-Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `math shift' on input line 596.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `math shift' on input line 596.
-
-Package color Info: Redefining color shadecolor on input line 601.
+Package color Info: Redefining color shadecolor on input line 604.
 <B31.png, id=259, 597.23125pt x 380.42125pt>
 File: B31.png Graphic file (type png)
 <use B31.png>
-Package pdftex.def Info: B31.png  used on input line 612.
+Package pdftex.def Info: B31.png  used on input line 615.
 (pdftex.def)             Requested size: 413.2866pt x 263.25716pt.
 <B32.png, id=260, 597.23125pt x 380.42125pt>
 File: B32.png Graphic file (type png)
 <use B32.png>
-Package pdftex.def Info: B32.png  used on input line 616.
+Package pdftex.def Info: B32.png  used on input line 619.
 (pdftex.def)             Requested size: 413.2866pt x 263.25716pt.
-
-Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `math shift' on input line 623.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `math shift' on input line 623.
-
-Package color Info: Redefining color shadecolor on input line 628.
-[17] [18 <./B11.png> <./B12.png>] [19 <./B21.png> <./B22.png>]
+Package color Info: Redefining color shadecolor on input line 631.
+ [17] [18 <./B11.png> <./B12.png>]
+[19 <./B21.png> <./B22.png>]
 <B41.png, id=283, 597.23125pt x 380.42125pt>
 File: B41.png Graphic file (type png)
 <use B41.png>
-Package pdftex.def Info: B41.png  used on input line 639.
+Package pdftex.def Info: B41.png  used on input line 642.
 (pdftex.def)             Requested size: 413.2866pt x 263.25716pt.
 <B42.png, id=284, 597.23125pt x 380.42125pt>
 File: B42.png Graphic file (type png)
 <use B42.png>
-Package pdftex.def Info: B42.png  used on input line 643.
+Package pdftex.def Info: B42.png  used on input line 646.
 (pdftex.def)             Requested size: 413.2866pt x 263.25716pt.
- [20 <./B23.png>] [21 <./B31.png> <./B32.png>] [22 <./B41.png> <./B42.png>]
-Package color Info: Redefining color shadecolor on input line 689.
+ [20 <./B23.png>] [21 <./B31.png> <./B32.png>]
+[22 <./B41.png> <./B42.png>]
+Package color Info: Redefining color shadecolor on input line 692.
 LaTeX Font Info:    Trying to load font information for OMS+cmtt on input line 
-691.
+694.
 
 (/Library/Frameworks/R.framework/Resources/share/texmf/tex/latex/omscmtt.fd
 File: omscmtt.fd 
 )
 LaTeX Font Info:    Font shape `OMS/cmtt/m/n' in size <10> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 691.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 694.
 
 [23
 
@@ -656,27 +597,27 @@ LaTeX Font Info:    Font shape `OMS/cmtt/m/n' in size <10> not available
 <CG1.png, id=312, 597.23125pt x 380.42125pt>
 File: CG1.png Graphic file (type png)
 <use CG1.png>
-Package pdftex.def Info: CG1.png  used on input line 722.
+Package pdftex.def Info: CG1.png  used on input line 725.
 (pdftex.def)             Requested size: 413.2866pt x 263.25716pt.
 <CG2.png, id=313, 597.23125pt x 380.42125pt>
 File: CG2.png Graphic file (type png)
 <use CG2.png>
-Package pdftex.def Info: CG2.png  used on input line 726.
+Package pdftex.def Info: CG2.png  used on input line 729.
 (pdftex.def)             Requested size: 413.2866pt x 263.25716pt.
 <CG3.png, id=314, 597.23125pt x 380.42125pt>
 File: CG3.png Graphic file (type png)
 <use CG3.png>
-Package pdftex.def Info: CG3.png  used on input line 736.
+Package pdftex.def Info: CG3.png  used on input line 739.
 (pdftex.def)             Requested size: 413.2866pt x 263.25716pt.
 <CG4.png, id=315, 597.23125pt x 380.42125pt>
 File: CG4.png Graphic file (type png)
 <use CG4.png>
-Package pdftex.def Info: CG4.png  used on input line 740.
+Package pdftex.def Info: CG4.png  used on input line 743.
 (pdftex.def)             Requested size: 413.2866pt x 263.25716pt.
 <CG5.png, id=316, 597.23125pt x 380.42125pt>
 File: CG5.png Graphic file (type png)
 <use CG5.png>
-Package pdftex.def Info: CG5.png  used on input line 750.
+Package pdftex.def Info: CG5.png  used on input line 753.
 (pdftex.def)             Requested size: 413.2866pt x 263.25716pt.
  [24] [25 <./CG1.png> <./CG2.png>] [26 <./CG3.png> <./CG4.png>] [27 <./CG5.png>
 ] [28] (./BGPhazard.aux)
@@ -684,10 +625,10 @@ Package rerunfilecheck Info: File `BGPhazard.out' has not changed.
 (rerunfilecheck)             Checksum: D8CA690DCE46B8BAEF5632306711025C;1862.
  ) 
 Here is how much of TeX's memory you used:
- 7688 strings out of 481234
- 122265 string characters out of 5913385
- 435387 words of memory out of 5000000
- 24376 multiletter control sequences out of 15000+600000
+ 7689 strings out of 481234
+ 122279 string characters out of 5913385
+ 435378 words of memory out of 5000000
+ 24377 multiletter control sequences out of 15000+600000
  417101 words of font info for 74 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
  71i,11n,74p,836b,522s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -717,7 +658,7 @@ nyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></Users/emiliomorones
 miliomorones/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.p
 fb></Users/emiliomorones/Library/TinyTeX/texmf-dist/fonts/type1/public/amsfonts
 /cm/cmtt12.pfb>
-Output written on BGPhazard.pdf (28 pages, 442761 bytes).
+Output written on BGPhazard.pdf (28 pages, 442906 bytes).
 PDF statistics:
  440 PDF objects out of 1000 (max. 8388607)
  326 compressed objects within 4 object streams
